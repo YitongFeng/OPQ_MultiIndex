@@ -1,4 +1,4 @@
-function coarse_vocabularies(yael_path,file_path,Rinit_path, coarse_name, idx_file, K)
+function coarse_vocabularies(yael_path,file_path,R_init_name, coarse_name, idx_file, K)
 
 % Coarse quantizaton with 2 subspaces
 %% Prameters:
@@ -13,14 +13,11 @@ function coarse_vocabularies(yael_path,file_path,Rinit_path, coarse_name, idx_fi
 all_data = fvecs_read(file_path);
 all_data = all_data';
 
-% Read image database paths;
-paths = textread('I:/Hashing/Code/Data/fvImgDb/ImgDb_proposal_paths.txt', '%s');
-
 dim=size(all_data,2);
 niter=30;
 M=2;    % number of subspaces
 
-tic;
+% tic;
 %%%OPQ_NP
 R_init = eye(dim);
 all_data = single(all_data);    % convert double to float
@@ -40,7 +37,8 @@ idx_fout = fopen([idx_file '.dat'], 'w');
 fwrite(idx_fout, idx_table', 'int32');
 
 % save R
-fvecs_write(Rinit_path,R_opq_np);
+fvecs_write([R_init_name, '.fvecs'], R_opq_np);
+
 
 % save coarse quantization centers
 file = fopen([coarse_name '.dat'], 'w');
@@ -52,5 +50,5 @@ fwrite(file, vocab1, 'float');
 fwrite(file, vocab2, 'float');
 fclose('all');
 save([coarse_name '.mat'], 'vocab1', 'vocab2');
-time=toc;
+% time=toc;
 end

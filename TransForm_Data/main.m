@@ -6,20 +6,33 @@ K=8;    % number of bits of each subspace in fine quantization
 M=8;    % number of subspaces of fine quantizaton
 n_choosedata=n;
 
-data_path=['../../data/' data_name];
+data_path=['../../Data/' data_name];
 index_path=['../index/' data_name];
 mkdir(index_path);
 
 yael_path = 'C:/Libraries/yael438';
 vlfeat_path='C:/vlfeat-0.9.20-bin/vlfeat-0.9.20';
 
-generate_learn([data_path '/' data_name '_base.fvecs'],[index_path '/' data_name '_learn.fvecs'],n_choosedata);
+fid_report = fopen([index_path '/opq_matlab_time.txt'], 'w');
+tic;
+generate_learn([data_path '/' data_name '_base.fvecs'],[index_path '/' data_name '_learn.fvecs'], n_choosedata);
+time = toc;
+fprintf(fid_report, 'Random shuffle samples time: %f', time);
 
-coarse_vocabularies(yael_path, [data_path '/' data_name '_base.fvecs'],[index_path '/new5/' data_name '_rinit.fvecs'],[index_path '/new5/' data_name '_coarse'], [index_path '/new5/' data_name '_coarse_idx'], 5);
+tic
+coarse_vocabularies(yael_path, [index_path '/' data_name '_learn.fvecs'], [data_path '/' data_name '_base.fvecs'], ...
+    [index_path data_name '_rinit'],[index_path data_name '_coarse'], [index_path data_name '_coarse_idx'], 5);
+time = toc;
+fprintf(fid_report, 'Coarse quantization samples time: %f', time);
 
-fine_vocabularies(yael_path,vlfeat_path, [data_path '/' data_name '_base.fvecs'], [index_path '/new5/' data_name '_rinit.fvecs'], [index_path '/new5/' data_name '_coarse_idx'], [index_path '/new5/' data_name '_coarse'], [index_path '/new5/' data_name '_fine2'], [index_path '/new5/' data_name '_fine_idx2'], K, M);
+tic
+fine_vocabularies(yael_path,vlfeat_path, [data_path '/' data_name '_base.fvecs'], [index_path data_name '_rinit.fvecs'], [index_path data_name '_coarse_idx'], [index_path data_name '_coarse'], [index_path data_name '_fine2'], [index_path data_name '_fine_idx2'], K, M);
+time = toc
+fprintf(fid_report, 'Fine quantization samples time: %f', time);
 
-transform_base_query([data_path '/' data_name '_base.fvecs'], [data_path '/' data_name '_query.fvecs'], [index_path '/new/' data_name '_rinit.fvecs'], [index_path '/new/' data_name '_base_NP2.fvecs'], [index_path '/new/' data_name '_query_NP2.fvecs']);
-
+tic
+transform_base_query([data_path '/' data_name '_base.fvecs'], [data_path '/' data_name '_query.fvecs'], [index_path data_name '_rinit.fvecs'], [index_path data_name '_base_NP2.fvecs'], [index_path data_name '_query_NP2.fvecs']);
+time = toc;
+fprintf(fid_report, 'Transform data time: %f', time);
 
 
