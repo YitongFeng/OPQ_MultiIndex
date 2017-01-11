@@ -17,7 +17,7 @@ dim=size(all_data,2);
 niter=30;
 M=2;    % number of subspaces
 
-tic;
+% tic;
 %%%OPQ_NP
 R_init = eye(dim);
 all_data = single(all_data);    % convert double to float
@@ -49,5 +49,5 @@ fwrite(file, vocab1, 'float');
 fwrite(file, vocab2, 'float');
 fclose('all');
 save([coarse_name '.mat'], 'vocab1', 'vocab2');
-time=toc;
+% time=toc;
 end
