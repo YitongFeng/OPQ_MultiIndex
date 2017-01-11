@@ -1,0 +1,65 @@
+﻿Build started 2017/1/8 11:21:09.
+     1>Project "I:\Hashing\Code\OPQ_Mindex_fyt_2.0\testOPQ\testOPQ\testOPQ.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /Zi /nologo /W3 /WX- /Od /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt ..\..\src\indexer_launcher.cpp
+         indexer_launcher.cpp
+     1>i:\hashing\code\opq_mindex_fyt_2.0\src\indexer.h(711): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+     1>i:\hashing\code\opq_mindex_fyt_2.0\src\indexer.h(712): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+     1>i:\hashing\code\opq_mindex_fyt_2.0\src\indexer.h(509): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
+                 i:\hashing\code\opq_mindex_fyt_2.0\src\indexer.h(502) : while compiling class template member function 'void MultiIndexer<RerankADC8>::PrepareCoarseQuantization(const std::string &,const int,const std::vector<Centroids,std::allocator<_Ty>> &)'
+                 with
+                 [
+                     _Ty=Centroids
+                 ]
+                 i:\hashing\code\opq_mindex_fyt_2.0\src\indexer.h(671) : see reference to function template instantiation 'void MultiIndexer<RerankADC8>::PrepareCoarseQuantization(const std::string &,const int,const std::vector<Centroids,std::allocator<_Ty>> &)' being compiled
+                 with
+                 [
+                     _Ty=Centroids
+                 ]
+                 i:\hashing\code\opq_mindex_fyt_2.0\src\indexer.h(259) : while compiling class template member function 'MultiIndexer<RerankADC8>::MultiIndexer(const int)'
+                 ..\..\src\indexer_launcher.cpp(102) : see reference to function template instantiation 'MultiIndexer<RerankADC8>::MultiIndexer(const int)' being compiled
+                 ..\..\src\indexer_launcher.cpp(102) : see reference to class template instantiation 'MultiIndexer<RerankADC8>' being compiled
+     1>i:\hashing\code\opq_mindex_fyt_2.0\src\indexer.h(634): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
+                 i:\hashing\code\opq_mindex_fyt_2.0\src\indexer.h(631) : while compiling class template member function 'void MultiIndexer<RerankADC8>::RestorePointsInCellsCountFromCourseQuantization(const std::string &,const int,const std::vector<Centroids,std::allocator<_Ty>> &)'
+                 with
+                 [
+                     _Ty=Centroids
+                 ]
+                 i:\hashing\code\opq_mindex_fyt_2.0\src\indexer.h(675) : see reference to function template instantiation 'void MultiIndexer<RerankADC8>::RestorePointsInCellsCountFromCourseQuantization(const std::string &,const int,const std::vector<Centroids,std::allocator<_Ty>> &)' being compiled
+                 with
+                 [
+                     _Ty=Centroids
+                 ]
+     1>i:\hashing\code\opq_mindex_fyt_2.0\src\multitable.hpp(66): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+                 i:\hashing\code\opq_mindex_fyt_2.0\src\multitable.hpp(61) : while compiling class template member function 'int Multitable<int>::GetCellGlobalIndex(const std::vector<int,std::allocator<_Kty>> &) const'
+                 with
+                 [
+                     _Kty=int
+                 ]
+                 i:\hashing\code\opq_mindex_fyt_2.0\src\indexer.h(651) : see reference to function template instantiation 'int Multitable<int>::GetCellGlobalIndex(const std::vector<int,std::allocator<_Kty>> &) const' being compiled
+                 with
+                 [
+                     _Kty=int
+                 ]
+                 i:\hashing\code\opq_mindex_fyt_2.0\src\indexer.h(502) : while compiling class template member function 'void MultiIndexer<RerankADC8>::PrepareCoarseQuantization(const std::string &,const int,const std::vector<Centroids,std::allocator<_Ty>> &)'
+                 with
+                 [
+                     _Ty=Centroids
+                 ]
+                 i:\hashing\code\opq_mindex_fyt_2.0\src\indexer.h(671) : see reference to function template instantiation 'void MultiIndexer<RerankADC8>::PrepareCoarseQuantization(const std::string &,const int,const std::vector<Centroids,std::allocator<_Ty>> &)' being compiled
+                 with
+                 [
+                     _Ty=Centroids
+                 ]
+     1>i:\hashing\code\opq_mindex_fyt_2.0\src\indexer.h(273): warning C4715: 'MultiIndexer<RerankADC8>::GetInputCoordSizeof' : not all control paths return a value
+     1>i:\hashing\code\opq_mindex_fyt_2.0\src\indexer.h(273): warning C4715: 'MultiIndexer<RerankADC16>::GetInputCoordSizeof' : not all control paths return a value
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"I:\Hashing\Code\OPQ_Mindex_fyt_2.0\testOPQ\x64\Debug\testOPQ.exe" /INCREMENTAL /NOLOGO opencv_core2410d.lib opencv_highgui2410d.lib opencv_imgproc2410d.lib libopenblas.dll.lib "boost_serialization-vc120-mt-gd-1_62.lib" "libboost_chrono-vc120-mt-gd-1_62.lib" "libboost_date_time-vc120-mt-gd-1_62.lib" "libboost_filesystem-vc120-mt-gd-1_62.lib" "libboost_system-vc120-mt-gd-1_62.lib" "libboost_thread-vc120-mt-gd-1_62.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"I:\Hashing\Code\OPQ_Mindex_fyt_2.0\testOPQ\x64\Debug\testOPQ.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"I:\Hashing\Code\OPQ_Mindex_fyt_2.0\testOPQ\x64\Debug\testOPQ.lib" /MACHINE:X64 x64\Debug\data_util.obj
+         x64\Debug\indexer_launcher.obj
+            Creating library I:\Hashing\Code\OPQ_Mindex_fyt_2.0\testOPQ\x64\Debug\testOPQ.lib and object I:\Hashing\Code\OPQ_Mindex_fyt_2.0\testOPQ\x64\Debug\testOPQ.exp
+         testOPQ.vcxproj -> I:\Hashing\Code\OPQ_Mindex_fyt_2.0\testOPQ\x64\Debug\testOPQ.exe
+     1>Done Building Project "I:\Hashing\Code\OPQ_Mindex_fyt_2.0\testOPQ\testOPQ\testOPQ.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:08.26

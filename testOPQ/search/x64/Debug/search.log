@@ -1,0 +1,81 @@
+﻿Build started 2017/1/8 20:21:33.
+     1>Project "I:\Hashing\Code\OPQ_Mindex_fyt_2.0\testOPQ\search\search.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /Zi /nologo /W3 /WX- /Od /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt ..\..\src\searcher_tester.cpp
+         searcher_tester.cpp
+     1>i:\hashing\code\opq_mindex_fyt_2.0\src\searcher.h(424): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+     1>i:\hashing\code\opq_mindex_fyt_2.0\src\searcher.h(425): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+     1>i:\hashing\code\opq_mindex_fyt_2.0\src\searcher.h(465): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+     1>i:\hashing\code\opq_mindex_fyt_2.0\src\searcher.h(466): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+     1>i:\hashing\code\opq_mindex_fyt_2.0\src\indexer.h(711): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+     1>i:\hashing\code\opq_mindex_fyt_2.0\src\indexer.h(712): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+     1>i:\hashing\code\opq_mindex_fyt_2.0\src\searcher.h(242): warning C4244: 'argument' : conversion from 'float' to 'unsigned __int64', possible loss of data
+                 i:\hashing\code\opq_mindex_fyt_2.0\src\searcher.h(234) : while compiling class template member function 'void MultiSearcher<RerankADC8,PointId>::Init(const std::string &,const std::string &,const std::string &,const RerankMode &,const int,bool,int)'
+                 i:\hashing\code\opq_mindex_fyt_2.0\src\searcher.h(487) : see reference to class template instantiation 'MultiSearcher<RerankADC8,PointId>' being compiled
+     1>i:\hashing\code\opq_mindex_fyt_2.0\src\searcher.h(282): warning C4267: 'initializing' : conversion from 'size_t' to 'Dimensions', possible loss of data
+                 i:\hashing\code\opq_mindex_fyt_2.0\src\searcher.h(279) : while compiling class template member function 'void MultiSearcher<RerankADC8,PointId>::GetNearestSubspacesCentroids(const Point &,const int,std::vector<std::vector<std::pair<OrderType,MetaInfo>,std::allocator<_Ty>>,std::allocator<std::vector<_Ty,std::allocator<_Ty>>>> *) const'
+                 with
+                 [
+                     OrderType=Distance
+         ,            MetaInfo=PointId
+         ,            _Ty=std::pair<Distance,PointId>
+                 ]
+                 i:\hashing\code\opq_mindex_fyt_2.0\src\searcher.h(375) : see reference to function template instantiation 'void MultiSearcher<RerankADC8,PointId>::GetNearestSubspacesCentroids(const Point &,const int,std::vector<std::vector<std::pair<OrderType,MetaInfo>,std::allocator<_Ty>>,std::allocator<std::vector<_Ty,std::allocator<_Ty>>>> *) const' being compiled
+                 with
+                 [
+                     OrderType=Distance
+         ,            MetaInfo=PointId
+         ,            _Ty=std::pair<Distance,PointId>
+                 ]
+     1>i:\hashing\code\opq_mindex_fyt_2.0\src\searcher.h(288): warning C4267: 'argument' : conversion from 'size_t' to 'const blasint', possible loss of data
+     1>i:\hashing\code\opq_mindex_fyt_2.0\src\searcher.h(290): warning C4267: 'argument' : conversion from 'size_t' to 'const blasint', possible loss of data
+     1>i:\hashing\code\opq_mindex_fyt_2.0\src\searcher.h(310): warning C4267: '=' : conversion from 'size_t' to 'int', possible loss of data
+                 i:\hashing\code\opq_mindex_fyt_2.0\src\searcher.h(306) : while compiling class template member function 'void MultiSearcher<RerankADC8,PointId>::GetCellEdgesInMultiIndexArray(const std::vector<int,std::allocator<_Kty>> &,int *,int *) const'
+                 with
+                 [
+                     _Kty=int
+                 ]
+                 i:\hashing\code\opq_mindex_fyt_2.0\src\searcher.h(334) : see reference to function template instantiation 'void MultiSearcher<RerankADC8,PointId>::GetCellEdgesInMultiIndexArray(const std::vector<int,std::allocator<_Kty>> &,int *,int *) const' being compiled
+                 with
+                 [
+                     _Kty=int
+                 ]
+     1>..\..\src\searcher_tester.cpp(224): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
+                 ..\..\src\searcher_tester.cpp(269) : see reference to function template instantiation 'void TestSearcher<MultiSearcher<RerankADC8,PointId>>(TSearcher &,std::vector<std::pair<std::string,Point>,std::allocator<_Ty>> &,std::unordered_map<std::string,std::vector<std::pair<std::string,int>,std::allocator<std::pair<std::string,int>>>,std::hash<_Kty>,std::equal_to<_Kty>,std::allocator<std::pair<const _Kty,std::vector<std::pair<std::string,int>,std::allocator<std::pair<std::string,int>>>>>>,Points &,std::vector<std::string,std::allocator<std::basic_string<char,std::char_traits<char>,std::allocator<char>>>>)' being compiled
+                 with
+                 [
+                     TSearcher=MultiSearcher<RerankADC8,PointId>
+         ,            _Ty=std::pair<std::string,Point>
+         ,            _Kty=std::string
+                 ]
+     1>i:\hashing\code\opq_mindex_fyt_2.0\src\multitable.hpp(66): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+                 i:\hashing\code\opq_mindex_fyt_2.0\src\multitable.hpp(61) : while compiling class template member function 'int Multitable<int>::GetCellGlobalIndex(const std::vector<int,std::allocator<_Kty>> &) const'
+                 with
+                 [
+                     _Kty=int
+                 ]
+                 i:\hashing\code\opq_mindex_fyt_2.0\src\searcher.h(307) : see reference to function template instantiation 'int Multitable<int>::GetCellGlobalIndex(const std::vector<int,std::allocator<_Kty>> &) const' being compiled
+                 with
+                 [
+                     _Kty=int
+                 ]
+                 i:\hashing\code\opq_mindex_fyt_2.0\src\searcher.h(306) : while compiling class template member function 'void MultiSearcher<RerankADC8,PointId>::GetCellEdgesInMultiIndexArray(const std::vector<int,std::allocator<_Kty>> &,int *,int *) const'
+                 with
+                 [
+                     _Kty=int
+                 ]
+                 i:\hashing\code\opq_mindex_fyt_2.0\src\searcher.h(334) : see reference to function template instantiation 'void MultiSearcher<RerankADC8,PointId>::GetCellEdgesInMultiIndexArray(const std::vector<int,std::allocator<_Kty>> &,int *,int *) const' being compiled
+                 with
+                 [
+                     _Kty=int
+                 ]
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"I:\Hashing\Code\OPQ_Mindex_fyt_2.0\testOPQ\x64\Debug\search.exe" /INCREMENTAL /NOLOGO opencv_core2410d.lib opencv_highgui2410d.lib opencv_imgproc2410d.lib libopenblas.dll.lib "boost_serialization-vc120-mt-gd-1_62.lib" "libboost_chrono-vc120-mt-gd-1_62.lib" "libboost_date_time-vc120-mt-gd-1_62.lib" "libboost_filesystem-vc120-mt-gd-1_62.lib" "libboost_system-vc120-mt-gd-1_62.lib" "libboost_thread-vc120-mt-gd-1_62.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"I:\Hashing\Code\OPQ_Mindex_fyt_2.0\testOPQ\x64\Debug\search.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"I:\Hashing\Code\OPQ_Mindex_fyt_2.0\testOPQ\x64\Debug\search.lib" /MACHINE:X64 x64\Debug\data_util.obj
+         x64\Debug\perfomance_util.obj
+         x64\Debug\searcher_tester.obj
+         search.vcxproj -> I:\Hashing\Code\OPQ_Mindex_fyt_2.0\testOPQ\x64\Debug\search.exe
+     1>Done Building Project "I:\Hashing\Code\OPQ_Mindex_fyt_2.0\testOPQ\search\search.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:08.97

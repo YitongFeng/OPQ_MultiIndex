@@ -1,0 +1,261 @@
+﻿Build started 2017/1/8 11:19:38.
+     1>Project "I:\Hashing\Code\OPQ_Mindex_fyt_2.0\testOPQ\test\test.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\src\data_util.cpp test.cpp
+         data_util.cpp
+     1>..\..\src\data_util.cpp(51): warning C4018: '<' : signed/unsigned mismatch
+     1>..\..\src\data_util.cpp(85): warning C4018: '<' : signed/unsigned mismatch
+     1>..\..\src\data_util.cpp(89): warning C4018: '<' : signed/unsigned mismatch
+     1>..\..\src\data_util.cpp(98): warning C4018: '<' : signed/unsigned mismatch
+     1>..\..\src\data_util.cpp(124): warning C4018: '<' : signed/unsigned mismatch
+     1>..\..\src\data_util.cpp(141): warning C4018: '<' : signed/unsigned mismatch
+     1>..\..\src\data_util.cpp(158): warning C4018: '<' : signed/unsigned mismatch
+     1>..\..\src\data_util.cpp(169): warning C4018: '<' : signed/unsigned mismatch
+     1>..\..\src\data_util.cpp(227): warning C4018: '<' : signed/unsigned mismatch
+         test.cpp
+     1>C:\local\boost_1_62_0\boost/serialization/access.hpp(116): error C2039: 'serialize' : is not a member of 'std::vector<int,std::allocator<_Ty>>'
+                 with
+                 [
+                     _Ty=int
+                 ]
+                 C:\local\boost_1_62_0\boost/serialization/serialization.hpp(68) : see reference to function template instantiation 'void boost::serialization::access::serialize<Archive,T>(Archive &,T &,const unsigned int)' being compiled
+                 with
+                 [
+                     Archive=boost::archive::binary_iarchive
+         ,            T=std::vector<int,std::allocator<int>>
+                 ]
+                 C:\local\boost_1_62_0\boost/serialization/serialization.hpp(126) : see reference to function template instantiation 'void boost::serialization::serialize<Archive,T>(Archive &,T &,const unsigned int)' being compiled
+                 with
+                 [
+                     Archive=boost::archive::binary_iarchive
+         ,            T=std::vector<int,std::allocator<int>>
+                 ]
+                 C:\local\boost_1_62_0\boost/archive/detail/iserializer.hpp(192) : see reference to function template instantiation 'void boost::serialization::serialize_adl<Archive,T>(Archive &,T &,const unsigned int)' being compiled
+                 with
+                 [
+                     Archive=boost::archive::binary_iarchive
+         ,            T=std::vector<int,std::allocator<int>>
+                 ]
+                 C:\local\boost_1_62_0\boost/archive/detail/iserializer.hpp(170) : while compiling class template member function 'void boost::archive::detail::iserializer<Archive,T>::load_object_data(boost::archive::detail::basic_iarchive &,void *,const unsigned int) const'
+                 with
+                 [
+                     Archive=boost::archive::binary_iarchive
+         ,            T=std::vector<int,std::allocator<int>>
+                 ]
+                 C:\local\boost_1_62_0\boost/archive/detail/iserializer.hpp(415) : see reference to class template instantiation 'boost::archive::detail::iserializer<Archive,T>' being compiled
+                 with
+                 [
+                     Archive=boost::archive::binary_iarchive
+         ,            T=std::vector<int,std::allocator<int>>
+                 ]
+                 C:\local\boost_1_62_0\boost/archive/detail/iserializer.hpp(462) : see reference to function template instantiation 'void boost::archive::detail::load_non_pointer_type<Archive>::load_standard::invoke<T>(Archive &,const T &)' being compiled
+                 with
+                 [
+                     Archive=boost::archive::binary_iarchive
+         ,            T=std::vector<int,std::allocator<int>>
+                 ]
+                 C:\local\boost_1_62_0\boost/archive/detail/iserializer.hpp(462) : see reference to function template instantiation 'void boost::archive::detail::load_non_pointer_type<Archive>::load_standard::invoke<T>(Archive &,const T &)' being compiled
+                 with
+                 [
+                     Archive=boost::archive::binary_iarchive
+         ,            T=std::vector<int,std::allocator<int>>
+                 ]
+                 C:\local\boost_1_62_0\boost/archive/detail/iserializer.hpp(618) : see reference to function template instantiation 'void boost::archive::detail::load_non_pointer_type<Archive>::invoke<T>(Archive &,T &)' being compiled
+                 with
+                 [
+                     Archive=boost::archive::binary_iarchive
+         ,            T=std::vector<int,std::allocator<int>>
+                 ]
+                 C:\local\boost_1_62_0\boost/archive/detail/iserializer.hpp(618) : see reference to function template instantiation 'void boost::archive::detail::load_non_pointer_type<Archive>::invoke<T>(Archive &,T &)' being compiled
+                 with
+                 [
+                     Archive=boost::archive::binary_iarchive
+         ,            T=std::vector<int,std::allocator<int>>
+                 ]
+                 C:\local\boost_1_62_0\boost/archive/detail/common_iarchive.hpp(66) : see reference to function template instantiation 'void boost::archive::load<Archive,T>(Archive &,T &)' being compiled
+                 with
+                 [
+                     Archive=boost::archive::binary_iarchive
+         ,            T=std::vector<int,std::allocator<int>>
+                 ]
+                 C:\local\boost_1_62_0\boost/archive/basic_binary_iarchive.hpp(75) : see reference to function template instantiation 'void boost::archive::detail::common_iarchive<Archive>::load_override<T>(T &)' being compiled
+                 with
+                 [
+                     Archive=boost::archive::binary_iarchive
+         ,            T=std::vector<int,std::allocator<int>>
+                 ]
+                 C:\local\boost_1_62_0\boost/archive/basic_binary_iarchive.hpp(75) : see reference to function template instantiation 'void boost::archive::detail::common_iarchive<Archive>::load_override<T>(T &)' being compiled
+                 with
+                 [
+                     Archive=boost::archive::binary_iarchive
+         ,            T=std::vector<int,std::allocator<int>>
+                 ]
+                 C:\local\boost_1_62_0\boost/archive/binary_iarchive_impl.hpp(58) : see reference to function template instantiation 'void boost::archive::basic_binary_iarchive<Archive>::load_override<T>(T &)' being compiled
+                 with
+                 [
+                     Archive=boost::archive::binary_iarchive
+         ,            T=std::vector<int,std::allocator<int>>
+                 ]
+                 C:\local\boost_1_62_0\boost/archive/binary_iarchive_impl.hpp(58) : see reference to function template instantiation 'void boost::archive::basic_binary_iarchive<Archive>::load_override<T>(T &)' being compiled
+                 with
+                 [
+                     Archive=boost::archive::binary_iarchive
+         ,            T=std::vector<int,std::allocator<int>>
+                 ]
+                 C:\local\boost_1_62_0\boost/archive/detail/interface_iarchive.hpp(68) : see reference to function template instantiation 'void boost::archive::binary_iarchive_impl<boost::archive::binary_iarchive,char,std::char_traits<char>>::load_override<T>(T &)' being compiled
+                 with
+                 [
+                     T=std::vector<int,std::allocator<int>>
+                 ]
+                 C:\local\boost_1_62_0\boost/archive/detail/interface_iarchive.hpp(68) : see reference to function template instantiation 'void boost::archive::binary_iarchive_impl<boost::archive::binary_iarchive,char,std::char_traits<char>>::load_override<T>(T &)' being compiled
+                 with
+                 [
+                     T=std::vector<int,std::allocator<int>>
+                 ]
+                 C:\local\boost_1_62_0\boost/archive/detail/interface_iarchive.hpp(75) : see reference to function template instantiation 'Archive &boost::archive::detail::interface_iarchive<Archive>::operator >><T>(T &)' being compiled
+                 with
+                 [
+                     Archive=boost::archive::binary_iarchive
+         ,            T=std::vector<int,std::allocator<int>>
+                 ]
+                 C:\local\boost_1_62_0\boost/archive/detail/interface_iarchive.hpp(75) : see reference to function template instantiation 'Archive &boost::archive::detail::interface_iarchive<Archive>::operator >><T>(T &)' being compiled
+                 with
+                 [
+                     Archive=boost::archive::binary_iarchive
+         ,            T=std::vector<int,std::allocator<int>>
+                 ]
+                 test.cpp(87) : see reference to function template instantiation 'Archive &boost::archive::detail::interface_iarchive<Archive>::operator &<std::vector<int,std::allocator<_Ty>>>(T &)' being compiled
+                 with
+                 [
+                     Archive=boost::archive::binary_iarchive
+         ,            _Ty=int
+         ,            T=std::vector<int,std::allocator<int>>
+                 ]
+                 test.cpp(87) : see reference to function template instantiation 'Archive &boost::archive::detail::interface_iarchive<Archive>::operator &<std::vector<int,std::allocator<_Ty>>>(T &)' being compiled
+                 with
+                 [
+                     Archive=boost::archive::binary_iarchive
+         ,            _Ty=int
+         ,            T=std::vector<int,std::allocator<int>>
+                 ]
+                 C:\local\boost_1_62_0\boost/serialization/access.hpp(116) : see reference to function template instantiation 'void Multitable<int>::serialize<Archive>(Archive &,unsigned int)' being compiled
+                 with
+                 [
+                     Archive=boost::archive::binary_iarchive
+                 ]
+                 C:\local\boost_1_62_0\boost/serialization/access.hpp(116) : see reference to function template instantiation 'void Multitable<int>::serialize<Archive>(Archive &,unsigned int)' being compiled
+                 with
+                 [
+                     Archive=boost::archive::binary_iarchive
+                 ]
+                 C:\local\boost_1_62_0\boost/serialization/serialization.hpp(68) : see reference to function template instantiation 'void boost::serialization::access::serialize<Archive,T>(Archive &,T &,const unsigned int)' being compiled
+                 with
+                 [
+                     Archive=boost::archive::binary_iarchive
+         ,            T=Multitable<int>
+                 ]
+                 C:\local\boost_1_62_0\boost/serialization/serialization.hpp(126) : see reference to function template instantiation 'void boost::serialization::serialize<Archive,T>(Archive &,T &,const unsigned int)' being compiled
+                 with
+                 [
+                     Archive=boost::archive::binary_iarchive
+         ,            T=Multitable<int>
+                 ]
+                 C:\local\boost_1_62_0\boost/archive/detail/iserializer.hpp(192) : see reference to function template instantiation 'void boost::serialization::serialize_adl<Archive,T>(Archive &,T &,const unsigned int)' being compiled
+                 with
+                 [
+                     Archive=boost::archive::binary_iarchive
+         ,            T=Multitable<int>
+                 ]
+                 C:\local\boost_1_62_0\boost/archive/detail/iserializer.hpp(170) : while compiling class template member function 'void boost::archive::detail::iserializer<Archive,T>::load_object_data(boost::archive::detail::basic_iarchive &,void *,const unsigned int) const'
+                 with
+                 [
+                     Archive=boost::archive::binary_iarchive
+         ,            T=Multitable<int>
+                 ]
+                 C:\local\boost_1_62_0\boost/archive/detail/iserializer.hpp(415) : see reference to class template instantiation 'boost::archive::detail::iserializer<Archive,T>' being compiled
+                 with
+                 [
+                     Archive=boost::archive::binary_iarchive
+         ,            T=Multitable<int>
+                 ]
+                 C:\local\boost_1_62_0\boost/archive/detail/iserializer.hpp(462) : see reference to function template instantiation 'void boost::archive::detail::load_non_pointer_type<Archive>::load_standard::invoke<T>(Archive &,const T &)' being compiled
+                 with
+                 [
+                     Archive=boost::archive::binary_iarchive
+         ,            T=Multitable<int>
+                 ]
+                 C:\local\boost_1_62_0\boost/archive/detail/iserializer.hpp(462) : see reference to function template instantiation 'void boost::archive::detail::load_non_pointer_type<Archive>::load_standard::invoke<T>(Archive &,const T &)' being compiled
+                 with
+                 [
+                     Archive=boost::archive::binary_iarchive
+         ,            T=Multitable<int>
+                 ]
+                 C:\local\boost_1_62_0\boost/archive/detail/iserializer.hpp(618) : see reference to function template instantiation 'void boost::archive::detail::load_non_pointer_type<Archive>::invoke<T>(Archive &,T &)' being compiled
+                 with
+                 [
+                     Archive=boost::archive::binary_iarchive
+         ,            T=Multitable<int>
+                 ]
+                 C:\local\boost_1_62_0\boost/archive/detail/iserializer.hpp(618) : see reference to function template instantiation 'void boost::archive::detail::load_non_pointer_type<Archive>::invoke<T>(Archive &,T &)' being compiled
+                 with
+                 [
+                     Archive=boost::archive::binary_iarchive
+         ,            T=Multitable<int>
+                 ]
+                 C:\local\boost_1_62_0\boost/archive/detail/common_iarchive.hpp(66) : see reference to function template instantiation 'void boost::archive::load<Archive,T>(Archive &,T &)' being compiled
+                 with
+                 [
+                     Archive=boost::archive::binary_iarchive
+         ,            T=Multitable<int>
+                 ]
+                 C:\local\boost_1_62_0\boost/archive/basic_binary_iarchive.hpp(75) : see reference to function template instantiation 'void boost::archive::detail::common_iarchive<Archive>::load_override<T>(T &)' being compiled
+                 with
+                 [
+                     Archive=boost::archive::binary_iarchive
+         ,            T=Multitable<int>
+                 ]
+                 C:\local\boost_1_62_0\boost/archive/basic_binary_iarchive.hpp(75) : see reference to function template instantiation 'void boost::archive::detail::common_iarchive<Archive>::load_override<T>(T &)' being compiled
+                 with
+                 [
+                     Archive=boost::archive::binary_iarchive
+         ,            T=Multitable<int>
+                 ]
+                 C:\local\boost_1_62_0\boost/archive/binary_iarchive_impl.hpp(58) : see reference to function template instantiation 'void boost::archive::basic_binary_iarchive<Archive>::load_override<T>(T &)' being compiled
+                 with
+                 [
+                     Archive=boost::archive::binary_iarchive
+         ,            T=Multitable<int>
+                 ]
+                 C:\local\boost_1_62_0\boost/archive/binary_iarchive_impl.hpp(58) : see reference to function template instantiation 'void boost::archive::basic_binary_iarchive<Archive>::load_override<T>(T &)' being compiled
+                 with
+                 [
+                     Archive=boost::archive::binary_iarchive
+         ,            T=Multitable<int>
+                 ]
+                 C:\local\boost_1_62_0\boost/archive/detail/interface_iarchive.hpp(68) : see reference to function template instantiation 'void boost::archive::binary_iarchive_impl<boost::archive::binary_iarchive,char,std::char_traits<char>>::load_override<T>(T &)' being compiled
+                 with
+                 [
+                     T=Multitable<int>
+                 ]
+                 C:\local\boost_1_62_0\boost/archive/detail/interface_iarchive.hpp(68) : see reference to function template instantiation 'void boost::archive::binary_iarchive_impl<boost::archive::binary_iarchive,char,std::char_traits<char>>::load_override<T>(T &)' being compiled
+                 with
+                 [
+                     T=Multitable<int>
+                 ]
+                 test.cpp(137) : see reference to function template instantiation 'Archive &boost::archive::detail::interface_iarchive<Archive>::operator >><Multitable<int>>(T &)' being compiled
+                 with
+                 [
+                     Archive=boost::archive::binary_iarchive
+         ,            T=Multitable<int>
+                 ]
+                 test.cpp(137) : see reference to function template instantiation 'Archive &boost::archive::detail::interface_iarchive<Archive>::operator >><Multitable<int>>(T &)' being compiled
+                 with
+                 [
+                     Archive=boost::archive::binary_iarchive
+         ,            T=Multitable<int>
+                 ]
+     1>Done Building Project "I:\Hashing\Code\OPQ_Mindex_fyt_2.0\testOPQ\test\test.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:05.19

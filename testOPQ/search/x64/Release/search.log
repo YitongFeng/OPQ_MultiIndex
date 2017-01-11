@@ -1,0 +1,100 @@
+﻿Build started 2017/1/8 20:58:23.
+     1>Project "I:\Hashing\Code\OPQ_Mindex_fyt_2.0\testOPQ\search\search.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TP /errorReport:prompt ..\..\src\perfomance_util.cpp ..\..\src\searcher_tester.cpp
+         perfomance_util.cpp
+     1>..\..\src\perfomance_util.cpp(20): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+     1>..\..\src\perfomance_util.cpp(98): warning C4996: 'access': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _access. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\io.h(323) : see declaration of 'access'
+     1>..\..\src\perfomance_util.cpp(134): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\src\perfomance_util.cpp(135): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\src\perfomance_util.cpp(164): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\src\perfomance_util.cpp(165): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>..\..\src\perfomance_util.cpp(313): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
+     1>..\..\src\perfomance_util.cpp(334): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
+     1>..\..\src\perfomance_util.cpp(348): warning C4018: '<' : signed/unsigned mismatch
+     1>..\..\src\perfomance_util.cpp(352): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
+         searcher_tester.cpp
+     1>i:\hashing\code\opq_mindex_fyt_2.0\src\searcher.h(424): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+     1>i:\hashing\code\opq_mindex_fyt_2.0\src\searcher.h(425): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+     1>i:\hashing\code\opq_mindex_fyt_2.0\src\searcher.h(465): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+     1>i:\hashing\code\opq_mindex_fyt_2.0\src\searcher.h(466): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+     1>i:\hashing\code\opq_mindex_fyt_2.0\src\indexer.h(711): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+     1>i:\hashing\code\opq_mindex_fyt_2.0\src\indexer.h(712): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+     1>i:\hashing\code\opq_mindex_fyt_2.0\src\searcher.h(242): warning C4244: 'argument' : conversion from 'float' to 'unsigned __int64', possible loss of data
+                 i:\hashing\code\opq_mindex_fyt_2.0\src\searcher.h(234) : while compiling class template member function 'void MultiSearcher<RerankADC8,PointId>::Init(const std::string &,const std::string &,const std::string &,const RerankMode &,const int,bool,int)'
+                 i:\hashing\code\opq_mindex_fyt_2.0\src\searcher.h(487) : see reference to class template instantiation 'MultiSearcher<RerankADC8,PointId>' being compiled
+     1>i:\hashing\code\opq_mindex_fyt_2.0\src\searcher.h(282): warning C4267: 'initializing' : conversion from 'size_t' to 'Dimensions', possible loss of data
+                 i:\hashing\code\opq_mindex_fyt_2.0\src\searcher.h(279) : while compiling class template member function 'void MultiSearcher<RerankADC8,PointId>::GetNearestSubspacesCentroids(const Point &,const int,std::vector<std::vector<std::pair<OrderType,MetaInfo>,std::allocator<_Ty>>,std::allocator<std::vector<_Ty,std::allocator<_Ty>>>> *) const'
+                 with
+                 [
+                     OrderType=Distance
+         ,            MetaInfo=PointId
+         ,            _Ty=std::pair<Distance,PointId>
+                 ]
+                 i:\hashing\code\opq_mindex_fyt_2.0\src\searcher.h(375) : see reference to function template instantiation 'void MultiSearcher<RerankADC8,PointId>::GetNearestSubspacesCentroids(const Point &,const int,std::vector<std::vector<std::pair<OrderType,MetaInfo>,std::allocator<_Ty>>,std::allocator<std::vector<_Ty,std::allocator<_Ty>>>> *) const' being compiled
+                 with
+                 [
+                     OrderType=Distance
+         ,            MetaInfo=PointId
+         ,            _Ty=std::pair<Distance,PointId>
+                 ]
+     1>i:\hashing\code\opq_mindex_fyt_2.0\src\searcher.h(288): warning C4267: 'argument' : conversion from 'size_t' to 'const blasint', possible loss of data
+     1>i:\hashing\code\opq_mindex_fyt_2.0\src\searcher.h(290): warning C4267: 'argument' : conversion from 'size_t' to 'const blasint', possible loss of data
+     1>i:\hashing\code\opq_mindex_fyt_2.0\src\searcher.h(310): warning C4267: '=' : conversion from 'size_t' to 'int', possible loss of data
+                 i:\hashing\code\opq_mindex_fyt_2.0\src\searcher.h(306) : while compiling class template member function 'void MultiSearcher<RerankADC8,PointId>::GetCellEdgesInMultiIndexArray(const std::vector<int,std::allocator<_Kty>> &,int *,int *) const'
+                 with
+                 [
+                     _Kty=int
+                 ]
+                 i:\hashing\code\opq_mindex_fyt_2.0\src\searcher.h(334) : see reference to function template instantiation 'void MultiSearcher<RerankADC8,PointId>::GetCellEdgesInMultiIndexArray(const std::vector<int,std::allocator<_Kty>> &,int *,int *) const' being compiled
+                 with
+                 [
+                     _Kty=int
+                 ]
+     1>..\..\src\searcher_tester.cpp(224): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
+                 ..\..\src\searcher_tester.cpp(266) : see reference to function template instantiation 'void TestSearcher<MultiSearcher<RerankADC8,PointId>>(TSearcher &,std::vector<std::pair<std::string,Point>,std::allocator<_Ty>> &,std::unordered_map<std::string,std::vector<std::pair<std::string,int>,std::allocator<std::pair<std::string,int>>>,std::hash<_Kty>,std::equal_to<_Kty>,std::allocator<std::pair<const _Kty,std::vector<std::pair<std::string,int>,std::allocator<std::pair<std::string,int>>>>>>,Points &,std::vector<std::string,std::allocator<std::basic_string<char,std::char_traits<char>,std::allocator<char>>>>)' being compiled
+                 with
+                 [
+                     TSearcher=MultiSearcher<RerankADC8,PointId>
+         ,            _Ty=std::pair<std::string,Point>
+         ,            _Kty=std::string
+                 ]
+     1>i:\hashing\code\opq_mindex_fyt_2.0\src\multitable.hpp(66): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+                 i:\hashing\code\opq_mindex_fyt_2.0\src\multitable.hpp(61) : while compiling class template member function 'int Multitable<int>::GetCellGlobalIndex(const std::vector<int,std::allocator<_Kty>> &) const'
+                 with
+                 [
+                     _Kty=int
+                 ]
+                 i:\hashing\code\opq_mindex_fyt_2.0\src\searcher.h(307) : see reference to function template instantiation 'int Multitable<int>::GetCellGlobalIndex(const std::vector<int,std::allocator<_Kty>> &) const' being compiled
+                 with
+                 [
+                     _Kty=int
+                 ]
+                 i:\hashing\code\opq_mindex_fyt_2.0\src\searcher.h(306) : while compiling class template member function 'void MultiSearcher<RerankADC8,PointId>::GetCellEdgesInMultiIndexArray(const std::vector<int,std::allocator<_Kty>> &,int *,int *) const'
+                 with
+                 [
+                     _Kty=int
+                 ]
+                 i:\hashing\code\opq_mindex_fyt_2.0\src\searcher.h(334) : see reference to function template instantiation 'void MultiSearcher<RerankADC8,PointId>::GetCellEdgesInMultiIndexArray(const std::vector<int,std::allocator<_Kty>> &,int *,int *) const' being compiled
+                 with
+                 [
+                     _Kty=int
+                 ]
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"I:\Hashing\Code\OPQ_Mindex_fyt_2.0\testOPQ\x64\Release\search.exe" /INCREMENTAL:NO /NOLOGO opencv_core2410.lib opencv_highgui2410.lib opencv_imgproc2410.lib libopenblas.dll.lib "boost_serialization-vc120-mt-1_62.lib" "libboost_chrono-vc120-mt-1_62.lib" "libboost_date_time-vc120-mt-1_62.lib" "libboost_filesystem-vc120-mt-1_62.lib" "libboost_system-vc120-mt-1_62.lib" "libboost_thread-vc120-mt-1_62.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"I:\Hashing\Code\OPQ_Mindex_fyt_2.0\testOPQ\x64\Release\search.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"I:\Hashing\Code\OPQ_Mindex_fyt_2.0\testOPQ\x64\Release\search.lib" /MACHINE:X64 x64\Release\data_util.obj
+         x64\Release\perfomance_util.obj
+         x64\Release\searcher_tester.obj
+            Creating library I:\Hashing\Code\OPQ_Mindex_fyt_2.0\testOPQ\x64\Release\search.lib and object I:\Hashing\Code\OPQ_Mindex_fyt_2.0\testOPQ\x64\Release\search.exp
+         Generating code
+         Finished generating code
+         search.vcxproj -> I:\Hashing\Code\OPQ_Mindex_fyt_2.0\testOPQ\x64\Release\search.exe
+     1>Done Building Project "I:\Hashing\Code\OPQ_Mindex_fyt_2.0\testOPQ\search\search.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:16.31
