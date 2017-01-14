@@ -1,4 +1,4 @@
-function coarse_vocabularies(yael_path,learn_file, raw_file,R_init_name, coarse_name, idx_file, K)
+function coarse_vocabularies(yael_path,learn_data_file, raw_data_file, R_init_name, coarse_name, idx_file, K)
 
 % Coarse quantizaton with 2 subspaces
 %% Prameters:
@@ -10,33 +10,25 @@ function coarse_vocabularies(yael_path,learn_file, raw_file,R_init_name, coarse_
 
 %%
 %addpath ('~/Documents/yael/yael_v401/matlab');
-all_data = fvecs_read(learn_file);
-all_data = all_data';
+learn_data = fvecs_read(learn_data_file);
+learn_data = learn_data';
 
-dim=size(all_data,2);
+dim=size(learn_data,2);
 niter=30;
 M=2;    % number of subspaces
 
 % tic;
 %%%OPQ_NP
 R_init = eye(dim);
-all_data = single(all_data);    % convert double to float
+learn_data = single(learn_data);    % convert double to float
 vocabSize = 2^K;
 % % add implementation of K-means
 
 center_table_init = cell (M,1);
 
-[centers_table_opq_np R_opq_np idx_table] = train_opq_np(all_data,M,center_table_init,R_init,niter/2,10,vocabSize);
+[centers_table_opq_np, R_opq_np , ~] = train_opq_np(learn_data,M,center_table_init,R_init,niter/2,15,vocabSize);
 vocab1 = centers_table_opq_np{1}';
 vocab2 = centers_table_opq_np{2}';
-
-% Cal and save idx_table (data only, no size describtion!)
-
-
-save([idx_file '.mat'], 'idx_table');
-idx_table = idx_table - 1; % let the indicies start from 0;
-idx_fout = fopen([idx_file '.dat'], 'w');
-fwrite(idx_fout, idx_table', 'int32');
 
 % save R
 fvecs_write([R_init_name, '.fvecs'], R_opq_np);
@@ -52,5 +44,21 @@ fwrite(file, vocab1, 'float');
 fwrite(file, vocab2, 'float');
 fclose('all');
 save([coarse_name '.mat'], 'vocab1', 'vocab2');
+
+clear all_data;
+raw_data = fvecs_read(raw_data_file);
+raw_data = single(raw_data);
+
+% Cal and save idx_table (data only, no size describtion!)
+idx_table = calidx(raw_data, vocab1, vocab2);
+save([idx_file '.mat'], 'idx_table');
+idx_fout = fopen([idx_file '.dat'], 'w');
+fwrite(idx_fout, idx_table', 'int32');
+
+learn_data = learn_data';
+idx_table_part = calidx(learn_data, vocab1, vocab2);
+save([idx_file '_part.mat'], 'idx_table_part');
+
+clear raw_data;
 % time=toc;
 end

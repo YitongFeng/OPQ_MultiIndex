@@ -183,6 +183,94 @@ void showImages(ImagePath queryName, string saveFold, vector< DistanceToPoint> q
 	outfile.close();
 }
 
+void showImages(ImagePath queryName, string saveFold, vector< DistanceToPoint> qRe, vector<string> paths){
+	ofstream outfile;
+	outfile.open("result.txt", ios::app);
+	string imgName = splitFileName(queryName);
+	string imgSaveFold = saveFold + "\\" + imgName;
+	string or = "md " + imgSaveFold;
+	if (access(imgSaveFold.c_str(), 0) != 0){
+		system(or.c_str());
+	}
+
+	// save query image
+	string qSavePath = imgSaveFold + "\\" + "0_0_" + imgName;
+	Mat imQ = cv::imread(queryName);
+	/*bool Qbg = 0;
+	vector<Rect> Qrect;
+	proposal(&IplImage(imQ), Qrect, Qbg);
+	for (int i = 0; i < Qrect.size(); i++){
+	Rect rectShow = Qrect[i];
+	rectangle(imQ, cvPoint(rectShow.x, rectShow.y), cvPoint(rectShow.x + rectShow.width, rectShow.y + rectShow.height), CV_RGB(255, 0, 0), 3, 8, 0);
+	}*/
+	imwrite(qSavePath, imQ);
+	//copyImg(queryName, qSavePath);
+	outfile << "query: " << imgName << endl;
+
+
+	////保存label 图片
+	//for (int i = 0; i < qOrder.size(); i++){
+	//	int labelOrder = 0;
+	//	float disF = 0;
+	//	int proposalOrder = 0;
+	//	string a = qOrder[i].first;
+	//	for (int j = 0; j < qRe.size(); j++){
+	//		string b = splitFileName(paths[qRe[j].second]);
+	//		if (a == b){
+	//			labelOrder = j + 1;
+	//			disF = qRe[j].first;
+	//			proposalOrder = 0;
+	//			break;
+	//		}
+	//	}
+	//	char num[100], dis[100];
+	//	sprintf(num, "%d", labelOrder);
+	//	sprintf(dis, "%3f", disF);
+	//	string labelNum(num);
+	//	string disFS(dis);
+	//	string name = a;
+	//	string lSavePath = imgSaveFold + "\\" + "0_1_" + labelNum + "_" + disFS + "_" + name;
+	//	cout << "label : " << name << " order: " << labelOrder << " dis : " << disF << endl;
+	//	outfile << "label : " << name << " order: " << labelOrder << " dis : " << disF << endl;
+	//	//为了显示的时候加上候选框		----2016-7-13
+	//	/*Mat imTmp = imread(labelName);
+	//	bool bg = 0;
+	//	vector<Rect> rect;
+	//	proposal(&IplImage(imTmp), rect, bg);
+	//	Rect rectShow = rect[proposalOrder];
+	//	rectangle(imTmp, cvPoint(rectShow.x, rectShow.y), cvPoint(rectShow.x + rectShow.width, rectShow.y + rectShow.height), CV_RGB(255, 0, 0), 3, 8, 0);
+	//	imwrite(lSavePath, imTmp);*/
+	//	//copyImg(labelName, lSavePath);
+	//}
+	for (int i = 0; i < qRe.size(); i++){
+		string path = paths[qRe[i].second];
+		float disF = qRe[i].first;
+		string name = splitFileName(path);
+		int proposalOrder = 0;
+
+		char num[100], dis[100];
+		sprintf(num, "%d", i + 1);
+		sprintf(dis, "%3f", disF);
+		string numS(num), disS(dis);
+		string rSavePath = imgSaveFold + "\\" + "0_2_" + numS + "_" + disS + "_" + name;
+
+		cout << path << endl;
+		cout << "result : " << i + 1 << " name :" << name << " dis : " << disF << endl;
+		outfile << "result : " << i + 1 << " name :" << name << " dis : " << disF << endl;
+
+		Mat imTmp = cv::imread(path);
+		bool bg = 0;
+		/*vector<Rect> rect;
+		proposal(&IplImage(imTmp), rect, bg);
+		Rect rectShow = rect[proposalOrder];
+		rectangle(imTmp, cvPoint(rectShow.x, rectShow.y), cvPoint(rectShow.x + rectShow.width, rectShow.y + rectShow.height), CV_RGB(255, 0, 0), 3, 8, 0);
+		*/
+		imwrite(rSavePath, imTmp);
+
+	}
+	outfile.close();
+}
+
 
 int GetRecallAt(const int length, const vector<PointId>& groundtruth,
 	const vector<DistanceToPoint>& result) {

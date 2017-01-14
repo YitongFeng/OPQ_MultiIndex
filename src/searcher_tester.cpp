@@ -78,34 +78,36 @@ int use_originaldata;
 string db_path_file;
 string query_path_file;
 int k;
+bool has_gt;
 
 int SetOptions(int argc, char** argv) {
-	string data_name = "fvImgDb";
-	string root_path = "I:\\Hashing\\Code\\OPQ_Mindex_fyt\\";
+	string data_name = "CNN2w";
+	string root_path = "I:\\Hashing\\Code\\output\\";
 	imgFold = "T:\\整理的数据集\\";
-	SPACE_DIMENSION = 4480;
-	data_count = 7388;
-	queries_count = 1483;
+	SPACE_DIMENSION = 256;
+	data_count = 225533;
+	queries_count = 100;
 	k = 20;
+	has_gt = false;
 
 	//THREADS_COUNT = 1;
 	//multiplicity = 2;
-	string index_path = root_path + "index\\" + data_name + "\\new\\";	// "I:\\Hashing\\Code\\OPQ_Mindex_fyt\\index\\fvImgDb\\"
-	result_path = root_path + "results0108\\";
+	string index_path = root_path + data_name + "\\";	// "I:\\Hashing\\Code\\OPQ_Mindex_fyt\\index\\fvImgDb\\"
+	result_path = root_path + data_name + "\\results\\";
 
 	coarse_vocabs_file = index_path + data_name + "_coarse.dat";
 	fine_vocabs_file = index_path + data_name + "_fine.dat";
 	index_files_prefix = index_path;
-	queries_file = index_path + "query_test744_NP.fvecs";
-	report_file = result_path + data_name + "_test744_report.txt";
+	queries_file = root_path + "CNN_query_NP.fvecs";
+	report_file = result_path + data_name + "_report.txt";
 	groundtruth_file = root_path + "gt_744.txt";	//************need to prepare gt files! *********
-	db_path_file = root_path + "ImgDb_proposal_paths.txt";
-	query_path_file = root_path + "test744_proposal_paths.txt";;
+	db_path_file = index_path + data_name + "_paths.txt";
+	query_path_file = root_path + "CNN_query_paths.txt";
 
-	neighbours_count = 100;	// 100, 500, 1000
+	neighbours_count = 30;	// 100, 500, 1000
 	subspaces_centroids_count = 2 * k;
 	data_file = index_path + data_name + "_base_NP.fvecs";
-	use_originaldata = 1;
+	use_originaldata = 1;	// 计算距离的时候用原数据还是用residual
 
 
 	do_rerank = 0;
@@ -163,6 +165,7 @@ template<class TSearcher>
 void TestSearcher(TSearcher& searcher,
 	vector<pair<string, Point>>& queries,
 	unordered_map<string, vector<pair<string, int>>> groundtruth, Points& dataset, vector<string> db_paths) {
+	
 	searcher.Init(index_files_prefix, coarse_vocabs_file,
 		fine_vocabs_file, mode,
 		subspaces_centroids_count,
@@ -177,7 +180,7 @@ void TestSearcher(TSearcher& searcher,
 	unordered_map<ImageName, vector< DistanceToPoint> > result;
 
 	string cur_img = queries[0].first;
-	float time = 0;
+	float time = 0.0;
 	clock_t start = clock();
 	vector<DistanceToPoint> res_one_img;
 	for (int i = 0; i < queries_count; ++i) //queries_count
@@ -190,7 +193,7 @@ void TestSearcher(TSearcher& searcher,
 			removeDublicates(res_one_img, db_paths);
 			sort(res_one_img.begin(), res_one_img.end(), comp_with_dis);
 			string cur_name = splitFileName(cur_img);
-			result[cur_name] = vector<DistanceToPoint>(res_one_img.begin(), res_one_img.begin() + neighbours_count);
+			result[cur_name] = vector<DistanceToPoint>(res_one_img.begin(), res_one_img.begin() + k);
 			res_one_img.clear();
 			cur_img = queries[i].first;
 		}
@@ -205,32 +208,35 @@ void TestSearcher(TSearcher& searcher,
 		res_one_img.clear();
 	}
 	clock_t end = clock();
-	time += (end - start) / CLOCKS_PER_SEC;
+	time += (end - start)*1.0 / CLOCKS_PER_SEC;
 
-	// *************** Save Result ***************
-	/*for (auto it = result.begin(); it != result.end(); it++){
-		ImagePath query_path = imgFold + "Img_In\\" + it->first;
-		showImages(query_path, result_path + "test744\\", it->second, groundtruth[it->first], db_paths);
-	}*/
+	//// *************** Save Result ***************
+	//for (auto it = result.begin(); it != result.end(); it++){
+	//	ImagePath query_path = imgFold + "Img_Db\\" + it->first;
+	//	if (has_gt)
+	//		showImages(query_path, result_path, it->second, groundtruth[it->first], db_paths);
+	//	else
+	//		showImages(query_path, result_path, it->second, db_paths);
+	//}
 
 	// **************** Cal Recall ***************
-	float recall = 0.0;
-	for (auto it = result.begin(); it != result.end(); ++it) //queries_count
-	{
-		string imgname = it->first;
-		if (groundtruth.find(imgname) != groundtruth.end()){
-			auto gt = groundtruth[imgname];
-			auto rr = result[imgname];
-			recall += GetRecall(k, gt, rr, db_paths);
-		}
-	}
+	//float recall = 0.0;
+	//for (auto it = result.begin(); it != result.end(); ++it) //queries_count
+	//{
+	//	string imgname = it->first;
+	//	if (groundtruth.find(imgname) != groundtruth.end()){
+	//		auto gt = groundtruth[imgname];
+	//		auto rr = result[imgname];
+	//		recall += GetRecall(k, gt, rr, db_paths);
+	//	}
+	//}
 
-	recall = recall / queries_count;
+	/*recall = recall / queries_count;*/
 	time = time / queries_count;
 
 	out.setf(ios::fixed);
-	cout << recall << " " << time << " #N_" << neighbours_count << " " << endl;
-	out << "recall: " << recall << " total time" << time * queries_count  << " mean time: " << time 
+	cout << " " << time << " #N_" << neighbours_count << " " << endl;
+	out << " total time" << time * queries_count  << " mean time: " << time 
 		<< " #N_neighbors: " << neighbours_count << " " << endl;
 }
 
@@ -246,18 +252,21 @@ int main(int argc, char** argv) {
 	/*vector<pair<string, Point>> db(data_count);
 	loadDbOrQuery(data_file, db_path_file, db, query_point_type);*/
 	Points dataset;
-	ReadPoints<float, Coord>(data_file, &dataset, data_count);
+	ReadPoints<float, Coord>(data_file, &dataset, data_count);	
+
+	// Load paths
 	ifstream data_path_fid(db_path_file);
 	vector<string> db_paths(data_count);
 	for (int i = 0; i < data_count; i++){
 		data_path_fid >> db_paths[i];
 	}
 
-	// Load ground truth
 	unordered_map<string, vector<pair<string, int>>> groundtruth;
-	loadGt(groundtruth_file, imgFold, groundtruth);
-	/*vector<vector<PointId> > groundtruth;*/
-	cout << "Groundtruth is read ...\n";
+	if (has_gt){
+		// Load ground truth
+		loadGt(groundtruth_file, imgFold, groundtruth);
+		cout << "Groundtruth is read ...\n";
+	}
 
 	vector<Centroids> fine_vocabs;
 	ReadFineVocabs<float>(fine_vocabs_file, &fine_vocabs);

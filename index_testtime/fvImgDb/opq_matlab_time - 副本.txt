@@ -1,0 +1,3 @@
+
+12-Jan-2017 09:48:01
+Random shuffle samples time: 1.209599 

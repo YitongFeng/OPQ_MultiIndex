@@ -341,12 +341,12 @@ bool MultiSearcher<Record, MetaInfo>::TraverseNextMultiIndexCell(const Point& po
 	GetResidual(point, cell_coordinates, coarse_vocabs_, residual_);
 	cell_finish = std::min((int)cell_finish, cell_start + (int)nearest_subpoints->size() - found_neghbours_count_);
 	for (int array_index = cell_start; array_index < cell_finish; ++array_index) {
-		if (rerank_mode_ == USE_RESIDUALS) {
+		if (use_originaldata_ == 0) {
 			RecordToMetainfoAndDistance<Record, MetaInfo>(residual_, *it,
 				&(nearest_subpoints->at(found_neghbours_count_)),
 				cell_coordinates, fine_vocabs_, dataset, use_originaldata_);
 		}
-		else if (rerank_mode_ == USE_INIT_POINTS) {
+		else if (use_originaldata_ == 1) {
 			RecordToMetainfoAndDistance<Record, MetaInfo>(&(point[0]), *it,
 				&(nearest_subpoints->at(found_neghbours_count_)),
 				cell_coordinates, fine_vocabs_, dataset, use_originaldata_);
@@ -390,6 +390,14 @@ void MultiSearcher<Record, MetaInfo>::GetNearestNeighbours(const Point& point, i
 		traverse_next_cell = TraverseNextMultiIndexCell(point, neighbours, dataset);	    // ******** key **********
 		cells_visited += 1;
 	}
+	if (found_neghbours_count_ < k){
+		std::sort(neighbours->begin(), neighbours->end(), [](pair<Distance, MetaInfo>& n1, pair<Distance, MetaInfo>& n2){
+			return n1.first > n2.first;
+		});
+		neighbours->resize(found_neghbours_count_);
+	}
+	
+	
 	clock_t after_traversal = clock();
 	perf_tester_.full_traversal_time += after_traversal - before_traversal;
 

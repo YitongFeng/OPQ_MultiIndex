@@ -93,6 +93,7 @@ void removeDublicates(vector<DistanceToPoint>& res_tmp, vector<string>& db_paths
 
 // Save images of searching results
 void showImages(ImagePath queryName, string saveFold, vector< DistanceToPoint> qRe, vector<pair<string, int> > qOrder, vector<string> paths);
+void showImages(ImagePath queryName, string saveFold, vector< DistanceToPoint> qRe, vector<string> paths);
 
 /**
 *  This function returns recall at specified length

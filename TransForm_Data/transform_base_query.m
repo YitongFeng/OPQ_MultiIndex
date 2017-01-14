@@ -9,9 +9,9 @@ dataset = fvecs_read(data_path);
 dataset = R_opq_p' * dataset;
 fvecs_write(trans_data_path,dataset);
 
-query = fvecs_read(query_path);
-query = R_opq_p' * query;
+% query = fvecs_read(query_path);
+% query = R_opq_p' * query;
 
-fvecs_write (trans_query_path,query);
+% fvecs_write (trans_query_path,query);
 
 end

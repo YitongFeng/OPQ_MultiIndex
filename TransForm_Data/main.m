@@ -1,38 +1,43 @@
 clear;
 clc;
-n=7388;
-data_name='fvImgDb';
+%n=3745;
+data_name='fvtmp';
 K=8;    % number of bits of each subspace in fine quantization
 M=8;    % number of subspaces of fine quantizaton
-n_choosedata=n;
+n_choosedata = 3000; % Select how many samples to train opq
 
-data_path=['../../Data/' data_name];
-index_path=['../index/' data_name];
+% data_path=['../../Data/' data_name];
+index_path=['I:/Hashing/Code/output/' data_name];
 mkdir(index_path);
-
 yael_path = 'C:/Libraries/yael438';
 vlfeat_path='C:/vlfeat-0.9.20-bin/vlfeat-0.9.20';
 
-fid_report = fopen([index_path '/opq_matlab_time.txt'], 'w');
+fid_report = fopen([index_path '/opq_cnn3000_time.txt'], 'a');
+% fprintf(fid_report, '\n%s\n', datestr(now));
+% tic;
+% generate_learn([index_path '/' data_name '_base.fvecs'],[index_path '/' data_name '_learn.fvecs'], n_choosedata);
+% time = toc;
+% % fprintf(fid_report, 'Random shuffle samples time: %f \n', time);
+% fprintf('Random shuffle samples time: %f seconds\n', time);
+% 
+% tic;
+% coarse_vocabularies(yael_path, [index_path '/' data_name '_learn.fvecs'], [index_path '/' data_name '_base.fvecs'], ...
+%     [index_path '/' data_name '_rinit'],[index_path '/' data_name '_coarse'], [index_path '/' data_name '_coarse_idx'], K);
+% time = toc;
+% fprintf('Coarse quantization samples time: %f  minutes\n', time / 60);
+% % fprintf(fid_report, 'Coarse quantization samples time: %f \n', time);
+
 tic;
-generate_learn([data_path '/' data_name '_base.fvecs'],[index_path '/' data_name '_learn.fvecs'], n_choosedata);
+fine_vocabularies(yael_path,vlfeat_path, [index_path '/' data_name '_learn.fvecs'], [index_path '/' data_name '_rinit.fvecs'], ...
+[index_path '/' data_name '_coarse_idx'], [index_path '/' data_name '_coarse'], [index_path '/' data_name '_fine'], [index_path '/' data_name '_fine_idx'], K, M);
 time = toc;
-fprintf(fid_report, 'Random shuffle samples time: %f', time);
-
-tic
-coarse_vocabularies(yael_path, [index_path '/' data_name '_learn.fvecs'], [data_path '/' data_name '_base.fvecs'], ...
-    [index_path data_name '_rinit'],[index_path data_name '_coarse'], [index_path data_name '_coarse_idx'], 5);
+fprintf('Fine quantization samples time: %f minutes\n', time / 60);
+% fprintf(fid_report, 'Fine quantization samples time: %f minutes\n', time / 60);
+% 
+tic;
+transform_base_query([index_path '/' data_name '_base.fvecs'], [index_path '/' data_name '_query.fvecs'], [index_path '/' data_name '_rinit.fvecs'], [index_path '/' data_name '_base_NP.fvecs'], [index_path '/' data_name '_query_NP.fvecs']);
 time = toc;
-fprintf(fid_report, 'Coarse quantization samples time: %f', time);
-
-tic
-fine_vocabularies(yael_path,vlfeat_path, [data_path '/' data_name '_base.fvecs'], [index_path data_name '_rinit.fvecs'], [index_path data_name '_coarse_idx'], [index_path data_name '_coarse'], [index_path data_name '_fine2'], [index_path data_name '_fine_idx2'], K, M);
-time = toc
-fprintf(fid_report, 'Fine quantization samples time: %f', time);
-
-tic
-transform_base_query([data_path '/' data_name '_base.fvecs'], [data_path '/' data_name '_query.fvecs'], [index_path data_name '_rinit.fvecs'], [index_path data_name '_base_NP2.fvecs'], [index_path data_name '_query_NP2.fvecs']);
-time = toc;
-fprintf(fid_report, 'Transform data time: %f', time);
+fprintf('%s transform data time: %f s \n', data_name, time);
+fprintf(fid_report, '%s transform data time: %f  s\n', data_name, time);
 
 

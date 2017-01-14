@@ -3,10 +3,11 @@
 %    points vocab1 vocab2 都按列组织，eg. points中一列位一个特征，行数为特征维数，列数为样本数
 % Output:
 %    id1, id2为每个样本分配到的最近的聚类中心的下标（从0开始！）
-function [id1, id2] = calidx(points, vocab1, vocab2)
+function idx_table = calidx(points, vocab1, vocab2)
     disp('Cal coarse ids...');
     n_vocab = size(vocab1, 2);
     N = size(points, 2);
+    idx_table = zeros(N, 2);
     
     psub1 = points(1:size(points,1) / 2, :);
     psub2 = points(size(points,1) / 2 + 1 : size(points, 1), :);
@@ -21,5 +22,8 @@ function [id1, id2] = calidx(points, vocab1, vocab2)
     [~, id2] = min(dis2, [], 1);
     id1 = id1 - 1;
     id2 = id2 - 1;
+    idx_table(:, 1) = id1;
+    idx_table(:, 2) = id2;
+    
     
     

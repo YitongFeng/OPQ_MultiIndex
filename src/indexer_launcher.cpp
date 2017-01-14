@@ -57,15 +57,15 @@ string result_path;
 string index_param;
 
 int SetOptions() {
-	string data_name = "fvImgDb";
-	string root_path = "I:\\Hashing\\Code\\OPQ_Mindex_fyt\\";
-	SPACE_DIMENSION = 4480;
-	points_count = 7388;
+	string data_name = "CNN2w";
+	SPACE_DIMENSION = 256;
+	points_count = 225533;
 
+	string root_path = "I:\\Hashing\\Code\\output\\";	
 	THREADS_COUNT = 1;
 	multiplicity = 2;
-	string index_path = root_path + "index\\" + data_name + "\\new\\";	
-	string result_path = root_path + "results3\\";	
+	string index_path = root_path + data_name + "\\";	
+	string result_path = root_path + data_name + "\\results\\";	
 	files_prefix = index_path;
 	points_file = index_path + data_name + "_base_NP.fvecs";	   // "index/fvImgDb/fgImgDb_base_NP.fvecs"
 	metainfo_file = result_path + "metainfo.txt";
@@ -95,9 +95,8 @@ int main() {
 	cout << "read coarse file\n";
 	ReadFineVocabs<float>(fine_vocabs_file, &fine_vocabs);
 	cout << "Vocs are read ...\n";
-	//timeval start;
-	//timeval end;
-	//gettimeofday(&start, NULL);
+	
+	clock_t start = clock();
 	if (fine_vocabs.size() == 8) {
 		MultiIndexer<RerankADC8> indexer(multiplicity);
 		indexer.BuildMultiIndex(points_file, metainfo_file, points_count, coarse_vocabs,
@@ -110,14 +109,13 @@ int main() {
 			fine_vocabs, mode, build_coarse_quantizations,
 			files_prefix, coarse_quantizations_file);
 	}
-
-	//gettimeofday(&end, NULL);
-	//float time=0;
-	//time += diff_timeval(end, start);
-
+	float time = 0;
+	clock_t end = clock();
+	time += (end - start) / CLOCKS_PER_SEC / 60.0;
 
 	ofstream out;
-	out.open(result_path.c_str(), ios::app);
-	out << time << " #index_time " << index_param << " " << endl;
+	out.open(result_path + "index_report.txt", ios::app);
+	cout << " index_time " << time << "minutes" << endl;
+	out << " index_time " << time << "minutes" << endl;
 	return 0;
 }

@@ -11,10 +11,6 @@
 % Out: fine_name + '.dat': save the fine quantization centers.
 %      
 function fine_vocabularies(yael_path,vlfeat_path,file_path,Rinit_path,idx_name, coarse_name, fine_name,fine_idx_name, K,M)
-
-
-
-
 %addpath ('~/Documents/yael/yael_v401/matlab');
 %run('~/Downloads/software/vlfeat-0.9.20/toolbox/vl_setup');
 
@@ -22,7 +18,7 @@ addpath(yael_path);
 run([vlfeat_path '/toolbox/vl_setup']);
 all_data = fvecs_read(file_path);
 
-tic;
+% tic;
 vocabSize = 2^K;
 R_opq_p = fvecs_read(Rinit_path);
 all_data = R_opq_p' * all_data;
@@ -30,13 +26,11 @@ all_data = R_opq_p' * all_data;
 % all_data = uint8(all_data * 10000);
 
 load([coarse_name '.mat'], 'vocab1', 'vocab2');
-load([idx_name '.mat'], 'idx_table');
-vocab1 = int32(vocab1 * 10000);
-vocab2 = int32(vocab2 * 10000);
-% i1 = vl_ikmeanspush((all_data(1:end/2,:)), vocab1);
-% i2 = vl_ikmeanspush((all_data(end/2+1:end,:)), vocab2);  
-i1 = idx_table(:, 1);
-i2 = idx_table(:, 2);
+load([idx_name '_part.mat'], 'idx_table_part');
+idx_table_part = idx_table_part + 1;
+ 
+i1 = idx_table_part(:, 1);
+i2 = idx_table_part(:, 2);
 
 residual = single(all_data)- single([vocab1(:,i1); vocab2(:,i2)]);
 bytes_per_point = M;
@@ -74,12 +68,12 @@ end
 
 % save fine idx table
 save([fine_idx_name '.mat'], 'fine_idx_table');
-fine_idx_table = fine_idx_table - 1;
-fine_idx_fout = fopen([fine_idx_name '.dat'], 'w');
-%fwrite(fine_idx_fout, size(residual, 2), 'int32');
-%fwrite(fine_idx_fout, M, 'int32');
-fwrite(fine_idx_fout, fine_idx_table', 'int32');
+% fine_idx_table = fine_idx_table - 1;
+% fine_idx_fout = fopen([fine_idx_name '.dat'], 'w');
+% %fwrite(fine_idx_fout, size(residual, 2), 'int32');
+% %fwrite(fine_idx_fout, M, 'int32');
+% fwrite(fine_idx_fout, fine_idx_table', 'int32');
 
-time=toc;
+% time=toc;
 fclose('all');
 end
