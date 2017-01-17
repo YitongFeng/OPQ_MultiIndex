@@ -25,7 +25,8 @@ class OrderedListsMerger {
  /**
   *  This constructor inits merger for input lists
   */
-  OrderedListsMerger();
+	 OrderedListsMerger(int subspace_centroids_to_consider, int coarse_vovabs_size);
+	 //OrderedListsMerger();
  /**
   * This function sets lists to merge
   * @param lists input lists to merge (must be ordered)
@@ -71,8 +72,14 @@ class OrderedListsMerger {
 ////////////////////      IMPLEMENTATION         //////////////////////////////////////////
 
 template<class OrderType, class MetaInfo>
-OrderedListsMerger<OrderType, MetaInfo>::OrderedListsMerger() {
+OrderedListsMerger<OrderType, MetaInfo>::OrderedListsMerger(int subspace_centroids_to_consider, int coarse_vovabs_size) {
+	GetYieldedItems().table.resize(std::pow((float)subspace_centroids_to_consider, 2));	// multi table resize to (2*k)^2 eg. for 10-NN is 20^2=400
+	for (int i = 0; i < coarse_vovabs_size; ++i) {
+		GetYieldedItems().dimensions.push_back(subspace_centroids_to_consider);
+	}
 }
+//template<class OrderType, class MetaInfo>
+//OrderedListsMerger<OrderType, MetaInfo>::OrderedListsMerger() {}
 
 template<class OrderType, class MetaInfo>
 void OrderedListsMerger<OrderType, MetaInfo>::InsertMergedItemIndicesInHeap(const MergedItemIndices& merged_item_indices) {

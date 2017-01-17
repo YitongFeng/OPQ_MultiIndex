@@ -1,0 +1,222 @@
+query: 10006923.jpg
+result : 1 name :10006923.jpg dis : 0.0393884
+result : 2 name :10783829.jpg dis : 0.0648277
+result : 3 name :7118153.jpg dis : 0.0694238
+result : 4 name :18242066.jpg dis : 0.0759448
+result : 5 name :3739713.jpg dis : 0.0778653
+result : 6 name :10623858.jpg dis : 0.0843492
+result : 7 name :10058120.jpg dis : 0.0860512
+query: 10006480.jpg
+result : 1 name :10006480.jpg dis : 0.0280775
+query: 10001039.jpg
+result : 2 name :3450964.jpg dis : 0.0444501
+result : 3 name :4533179.jpg dis : 0.0529089
+result : 4 name :3741079.jpg dis : 0.0590311
+result : 5 name :10983025.jpg dis : 0.0633422
+result : 6 name :15040866.jpg dis : 0.0640098
+result : 7 name :13360519.jpg dis : 0.0673377
+result : 8 name :9315049.jpg dis : 0.0677025
+result : 9 name :984156.jpg dis : 0.068648
+result : 10 name :1169387.jpg dis : 0.0693474
+result : 11 name :6679637.jpg dis : 0.0704275
+result : 12 name :14841136.jpg dis : 0.0704587
+result : 13 name :8575409.jpg dis : 0.0706622
+query: 10001039.jpg
+result : 1 name :10001039.jpg dis : 0.0464702
+result : 2 name :9293857.jpg dis : 0.0831321
+result : 3 name :5100233.jpg dis : 0.0947431
+result : 4 name :5694863.jpg dis : 0.0969965
+result : 5 name :7981286.jpg dis : 0.0970995
+result : 6 name :3601154.jpg dis : 0.0976998
+result : 7 name :10675284.jpg dis : 0.0979801
+result : 8 name :1142403.jpg dis : 0.101453
+result : 9 name :6336140.jpg dis : 0.105713
+result : 10 name :16575403.jpg dis : 0.10574
+result : 11 name :6077902.jpg dis : 0.106026
+result : 12 name :5298266.jpg dis : 0.107391
+result : 13 name :5809428.jpg dis : 0.10937
+result : 14 name :7796382.jpg dis : 0.109671
+result : 15 name :5196828.jpg dis : 0.109681
+result : 16 name :13070297.jpg dis : 0.109705
+result : 17 name :G1017344.jpg dis : 0.11148
+result : 18 name :3403047.jpg dis : 0.111634
+result : 19 name :14902206.jpg dis : 0.112103
+result : 20 name :7222026.jpg dis : 0.112248
+query: 10001039.jpg
+result : 1 name :10001039.jpg dis : 0.0464702
+result : 2 name :9293857.jpg dis : 0.0831321
+result : 3 name :5100233.jpg dis : 0.0947431
+result : 4 name :5694863.jpg dis : 0.0969965
+result : 5 name :7981286.jpg dis : 0.0970995
+result : 6 name :3601154.jpg dis : 0.0976998
+result : 7 name :10675284.jpg dis : 0.0979801
+result : 8 name :1142403.jpg dis : 0.101453
+result : 9 name :6336140.jpg dis : 0.105713
+result : 10 name :16575403.jpg dis : 0.10574
+result : 11 name :6077902.jpg dis : 0.106026
+result : 12 name :5298266.jpg dis : 0.107391
+result : 13 name :5809428.jpg dis : 0.10937
+result : 14 name :7796382.jpg dis : 0.109671
+result : 15 name :5196828.jpg dis : 0.109681
+result : 16 name :13070297.jpg dis : 0.109705
+result : 17 name :G1017344.jpg dis : 0.11148
+result : 18 name :3403047.jpg dis : 0.111634
+result : 19 name :14902206.jpg dis : 0.112103
+result : 20 name :7222026.jpg dis : 0.112248
+query: 10006480.jpg
+result : 1 name :10006480.jpg dis : 0.0280775
+result : 2 name :3450964.jpg dis : 0.0444501
+result : 3 name :4533179.jpg dis : 0.0529089
+result : 4 name :3741079.jpg dis : 0.0590311
+result : 5 name :10983025.jpg dis : 0.0633422
+result : 6 name :15040866.jpg dis : 0.0640098
+result : 7 name :13360519.jpg dis : 0.0673377
+result : 8 name :9315049.jpg dis : 0.0677025
+result : 9 name :984156.jpg dis : 0.068648
+result : 10 name :1169387.jpg dis : 0.0693474
+result : 11 name :6679637.jpg dis : 0.0704275
+result : 12 name :14841136.jpg dis : 0.0704587
+result : 13 name :8575409.jpg dis : 0.0706622
+result : 14 name :12351827.jpg dis : 0.0710293
+result : 15 name :11156927.jpg dis : 0.0726232
+result : 16 name :9212502.jpg dis : 0.0729454
+result : 17 name :14740515.jpg dis : 0.0733688
+result : 18 name :12282592.jpg dis : 0.0734953
+result : 19 name :4896590.jpg dis : 0.0750514
+result : 20 name :13673722.jpg dis : 0.0762576
+query: 10006480.jpg
+query: 10006480.jpg
+result : 1 name :10006480.jpg dis : 0.0280775
+result : 2 name :3450964.jpg dis : 0.0444501
+query: 10001039.jpg
+result : 3 name :4533179.jpg dis : 0.0529089
+result : 1 name :10001039.jpg dis : 0.0464702
+result : 4 name :3741079.jpg dis : 0.0590311
+result : 5 name :10983025.jpg dis : 0.0633422
+result : 6 name :15040866.jpg dis : 0.0640098
+result : 7 name :13360519.jpg dis : 0.0673377
+result : 2 name :9293857.jpg dis : 0.0831321
+result : 8 name :9315049.jpg dis : 0.0677025
+result : 3 name :5100233.jpg dis : 0.0947431
+result : 9 name :984156.jpg dis : 0.068648
+result : 10 name :1169387.jpg dis : 0.0693474
+result : 11 name :6679637.jpg dis : 0.0704275
+result : 12 name :14841136.jpg dis : 0.0704587
+result : 13 name :8575409.jpg dis : 0.0706622
+result : 4 name :5694863.jpg dis : 0.0969965
+result : 14 name :12351827.jpg dis : 0.0710293
+result : 5 name :7981286.jpg dis : 0.0970995
+result : 15 name :11156927.jpg dis : 0.0726232
+result : 6 name :3601154.jpg dis : 0.0976998
+result : 16 name :9212502.jpg dis : 0.0729454
+result : 17 name :14740515.jpg dis : 0.0733688
+result : 18 name :12282592.jpg dis : 0.0734953
+result : 19 name :4896590.jpg dis : 0.0750514
+result : 7 name :10675284.jpg dis : 0.0979801
+result : 20 name :13673722.jpg dis : 0.0762576
+result : 8 name :1142403.jpg dis : 0.101453
+result : 9 name :6336140.jpg dis : 0.105713
+result : 10 name :16575403.jpg dis : 0.10574
+result : 11 name :6077902.jpg dis : 0.106026
+result : 12 name :5298266.jpg dis : 0.107391
+result : 13 name :5809428.jpg dis : 0.10937
+result : 14 name :7796382.jpg dis : 0.109671
+result : 15 name :5196828.jpg dis : 0.109681
+result : 16 name :13070297.jpg dis : 0.109705
+result : 17 name :G1017344.jpg dis : 0.11148
+result : 18 name :3403047.jpg dis : 0.111634
+result : 19 name :14902206.jpg dis : 0.112103
+result : 20 name :7222026.jpg dis : 0.112248
+query: 10006480.jpg
+result : 1 name :9315049.jpg dis : 0.0677025
+result : 2 name :9293857.jpg dis : 0.0768572
+result : 3 name :13441531.jpg dis : 0.0821135
+query: 10001039.jpg
+result : 1 name :16575403.jpg dis : 0.10574
+result : 2 name :G1017344.jpg dis : 0.11148
+result : 3 name :14902206.jpg dis : 0.112103
+result : 4 name :13441504.jpg dis : 0.0821135
+result : 4 name :2012803.jpg dis : 0.112249
+result : 5 name :15680185.jpg dis : 0.113433
+result : 5 name :9219550.jpg dis : 0.0837954
+result : 6 name :4876474.jpg dis : 0.116057
+result : 7 name :8412226.jpg dis : 0.116079
+result : 6 name :9515375.jpg dis : 0.0847778
+result : 8 name :17440816.jpg dis : 0.117054
+result : 9 name :G1168412.jpg dis : 0.11922
+result : 7 name :17160618.jpg dis : 0.0868963
+result : 10 name :14841136.jpg dis : 0.120332
+result : 8 name :16885976.jpg dis : 0.0908057
+result : 11 name :10983025.jpg dis : 0.12158
+result : 9 name :11234105.jpg dis : 0.0913659
+result : 12 name :10623858.jpg dis : 0.123236
+result : 10 name :11634841.jpg dis : 0.0920465
+result : 13 name :11207019.jpg dis : 0.123257
+result : 14 name :9447872.jpg dis : 0.12438
+result : 11 name :14784863A.jpg dis : 0.0926502
+result : 15 name :15698525.jpg dis : 0.126515
+result : 12 name :16862661.jpg dis : 0.0926508
+result : 16 name :5336502.jpg dis : 0.127393
+result : 13 name :5283810.jpg dis : 0.0932758
+result : 17 name :8443381.jpg dis : 0.128934
+result : 14 name :5196828.jpg dis : 0.0996323
+result : 15 name :15852043.jpg dis : 0.100741
+result : 18 name :9435713.jpg dis : 0.129617
+result : 16 name :3654881.jpg dis : 0.103408
+result : 19 name :10691362.jpg dis : 0.132848
+result : 20 name :1900087.jpg dis : 0.133251
+result : 17 name :12456506.jpg dis : 0.104771
+result : 18 name :4793479.jpg dis : 0.105438
+result : 19 name :5886882.jpg dis : 0.106645
+result : 20 name :4925938.jpg dis : 0.108008
+query: 10006480.jpg
+query: 1003496.jpg
+query: 10030460.jpg
+query: 10034629.jpg
+query: 10001039.jpg
+query: 10018044.jpg
+result : 1 name :7796382.jpg dis : 0.109671
+result : 2 name :5018409.jpg dis : 0.113605
+result : 3 name :18395993.jpg dis : 0.115344
+result : 4 name :7722913.jpg dis : 0.117269
+result : 5 name :7044776.jpg dis : 0.119519
+result : 6 name :5353331.jpg dis : 0.12154
+result : 7 name :14900393.jpg dis : 0.125282
+result : 8 name :3130583.jpg dis : 0.12988
+result : 9 name :7268993.jpg dis : 0.130692
+result : 10 name :1042284.jpg dis : 0.131135
+result : 11 name :1044272.jpg dis : 0.13119
+result : 12 name :4277340.jpg dis : 0.131719
+result : 13 name :8362725.jpg dis : 0.132511
+result : 14 name :7711974.jpg dis : 0.132568
+query: 10006480.jpg
+query: 10006480.jpg
+query: 1003496.jpg
+query: 10014261.jpg
+query: 10006923.jpg
+query: 10030460.jpg
+query: 10001039.jpg
+query: 10001039.jpg
+query: 10001039.jpg
+query: 10001039.jpg
+result : 1 name :10675284.jpg dis : 0.0979801
+query: 10001039.jpg
+result : 1 name :6144755.jpg dis : 0.127376
+result : 2 name :5298266.jpg dis : 0.107391
+result : 2 name :1650598.jpg dis : 0.127607
+result : 3 name :3101533.jpg dis : 0.110102
+result : 3 name :7374754.jpg dis : 0.130287
+result : 4 name :14902206.jpg dis : 0.112103
+result : 4 name :6144756.JPG dis : 0.132887
+result : 5 name :1177622.jpg dis : 0.134492
+result : 6 name :7235122.jpg dis : 0.135387
+result : 5 name :15680185.jpg dis : 0.113433
+result : 7 name :13786618.jpg dis : 0.135955
+result : 6 name :11591565.jpg dis : 0.114635
+result : 8 name :15099621.jpg dis : 0.137986
+result : 7 name :8412226.jpg dis : 0.116079
+result : 9 name :11008312.jpg dis : 0.138499
+result : 8 name :13690439.jpg dis : 0.12061
+result : 10 name :6030189.jpg dis : 0.139165
+query: 10006923.jpg
+query: 10030460.jpg

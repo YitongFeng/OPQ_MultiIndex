@@ -3,12 +3,14 @@
 
 //#include <boost/program_options.hpp>
 #include <time.h>
+#include <thread>
 //#include <sys/time.h>
 //#include <mkl.h>
 
 #include "searcher.h"
 #include "indexer.h"
 #include "perfomance_util.h"
+
 
 //#pragma comment(lib,"nearest_search_lib.lib")
 
@@ -81,33 +83,34 @@ int k;
 bool has_gt;
 
 int SetOptions(int argc, char** argv) {
-	string data_name = "CNN2w";
+	string data_name = "CNN3000";
 	string root_path = "I:\\Hashing\\Code\\output\\";
 	imgFold = "T:\\整理的数据集\\";
 	SPACE_DIMENSION = 256;
-	data_count = 225533;
+	data_count = 3745;
 	queries_count = 100;
 	k = 20;
 	has_gt = false;
 
-	//THREADS_COUNT = 1;
+	//THREADS_COUNT = 8;
 	//multiplicity = 2;
 	string index_path = root_path + data_name + "\\";	// "I:\\Hashing\\Code\\OPQ_Mindex_fyt\\index\\fvImgDb\\"
-	result_path = root_path + data_name + "\\results\\";
+	result_path = root_path + data_name + "\\results_thread\\";
+	queries_file = root_path + "CNN_query_NP.fvecs";
+	query_path_file = root_path + "CNN_query_paths.txt";
 
 	coarse_vocabs_file = index_path + data_name + "_coarse.dat";
 	fine_vocabs_file = index_path + data_name + "_fine.dat";
 	index_files_prefix = index_path;
-	queries_file = root_path + "CNN_query_NP.fvecs";
 	report_file = result_path + data_name + "_report.txt";
 	groundtruth_file = root_path + "gt_744.txt";	//************need to prepare gt files! *********
 	db_path_file = index_path + data_name + "_paths.txt";
-	query_path_file = root_path + "CNN_query_paths.txt";
+	
 
-	neighbours_count = 30;	// 100, 500, 1000
+	neighbours_count = 100;	// 100, 500, 1000
 	subspaces_centroids_count = 2 * k;
 	data_file = index_path + data_name + "_base_NP.fvecs";
-	use_originaldata = 1;	// 计算距离的时候用原数据还是用residual
+	use_originaldata = 0;	// 计算距离的时候用原数据还是用opq code
 
 
 	do_rerank = 0;
@@ -118,58 +121,55 @@ int SetOptions(int argc, char** argv) {
 }
 
 
-template<class TSearcher>
-void TestSearcher(TSearcher& searcher,
-	const Points& queries,
-	const vector<vector<PointId> >& groundtruth, const Points& dataset) {
-	searcher.Init(index_files_prefix, coarse_vocabs_file,
-		fine_vocabs_file, mode,
-		subspaces_centroids_count,
-		do_rerank, use_originaldata); //,use_originaldata
-
-	std::ofstream out(report_file.c_str(), ios::app);
-
-	vector< vector< DistanceToPoint> > result;
-	result.resize(queries_count);
-	//timeval start;
-	//timeval end;
-	float time = 0;
-
-	clock_t start = clock();
-	//gettimeofday(&start, NULL);
-	for (int i = 0; i < queries_count; ++i) //queries_count
-	{
-		searcher.GetNearestNeighbours(queries[i], neighbours_count, &result[i], dataset);
-	}
-	clock_t end = clock();
-	time += (end - start) / CLOCKS_PER_SEC;
-	//gettimeofday(&end, NULL);
-	//time += diff_timeval(end, start);
-
-	// **************** Cal Recall ***************
-	float recall = 0.0;
-	for (int i = 0; i < queries_count; ++i) //queries_count
-	{
-		recall += GetRecall(k, groundtruth[i], result[i]);
-	}
-
-	recall = recall / queries_count;
-	time = time / queries_count;
-
-	out.setf(ios::fixed);
-	cout << recall << " " << time << " #N_" << neighbours_count << " " << endl;
-	out << recall << " " << time << " #N_" << neighbours_count << " " << endl;
-}
+//template<class TSearcher>
+//void TestSearcher(TSearcher& searcher,
+//	const Points& queries,
+//	const vector<vector<PointId> >& groundtruth, const Points& dataset) {
+//	searcher.Init(index_files_prefix, coarse_vocabs_file,
+//		fine_vocabs_file, mode,
+//		subspaces_centroids_count,
+//		do_rerank, use_originaldata); 
+//
+//	std::ofstream out(report_file.c_str(), ios::app);
+//
+//	vector< vector< DistanceToPoint> > result;
+//	result.resize(queries_count);
+//	
+//	float time = 0;
+//	clock_t start = clock();
+//	for (int i = 0; i < queries_count; ++i) 
+//	{
+//		searcher.GetNearestNeighbours(queries[i], neighbours_count, &result[i], dataset);
+//	}
+//	clock_t end = clock();
+//	time += (end - start) / CLOCKS_PER_SEC;
+//	//gettimeofday(&end, NULL);
+//	//time += diff_timeval(end, start);
+//
+//	// **************** Cal Recall ***************
+//	float recall = 0.0;
+//	for (int i = 0; i < queries_count; ++i) //queries_count
+//	{
+//		recall += GetRecall(k, groundtruth[i], result[i]);
+//	}
+//
+//	recall = recall / queries_count;
+//	time = time / queries_count;
+//
+//	out.setf(ios::fixed);
+//	cout << recall << " " << time << " #N_" << neighbours_count << " " << endl;
+//	out << recall << " " << time << " #N_" << neighbours_count << " " << endl;
+//}
 
 template<class TSearcher>
 void TestSearcher(TSearcher& searcher,
 	vector<pair<string, Point>>& queries,
-	unordered_map<string, vector<pair<string, int>>> groundtruth, Points& dataset, vector<string> db_paths) {
+	unordered_map<string, vector<pair<string, int>>> groundtruth, Points& dataset, vector<string>& db_paths) {
 	
 	searcher.Init(index_files_prefix, coarse_vocabs_file,
 		fine_vocabs_file, mode,
 		subspaces_centroids_count,
-		do_rerank, use_originaldata); //,use_originaldata
+		do_rerank, use_originaldata); 
 
 	std::ofstream out(report_file.c_str(), ios::app);
 
@@ -183,17 +183,21 @@ void TestSearcher(TSearcher& searcher,
 	float time = 0.0;
 	clock_t start = clock();
 	vector<DistanceToPoint> res_one_img;
-	for (int i = 0; i < queries_count; ++i) //queries_count
+
+	for (int i = 0; i < queries_count; ++i) 
 	{
 		vector<DistanceToPoint> res_tmp;
-		searcher.GetNearestNeighbours(queries[i].second, neighbours_count * 2, &res_tmp, dataset);
+		searcher.GetNearestNeighbours(queries[i].second, neighbours_count, &res_tmp, dataset);
 
 		if (queries[i].first != cur_img){
 			// Remove the duplicates in res_one_img
 			removeDublicates(res_one_img, db_paths);
 			sort(res_one_img.begin(), res_one_img.end(), comp_with_dis);
 			string cur_name = splitFileName(cur_img);
-			result[cur_name] = vector<DistanceToPoint>(res_one_img.begin(), res_one_img.begin() + k);
+			if (res_one_img.size() >= k)
+				result[cur_name] = vector<DistanceToPoint>(res_one_img.begin(), res_one_img.begin() + k);
+			else
+				cerr << "Not enough retrieval results! " << endl;
 			res_one_img.clear();
 			cur_img = queries[i].first;
 		}
@@ -204,20 +208,23 @@ void TestSearcher(TSearcher& searcher,
 		removeDublicates(res_one_img, db_paths);
 		sort(res_one_img.begin(), res_one_img.end(), comp_with_dis);
 		string cur_name = splitFileName(cur_img);
-		result[cur_name] = vector<DistanceToPoint>(res_one_img.begin(), res_one_img.begin() + neighbours_count);
+		if (res_one_img.size() >= neighbours_count)
+			result[cur_name] = vector<DistanceToPoint>(res_one_img.begin(), res_one_img.begin() + neighbours_count);
+		else
+			cerr << "Not enough retrieval results! " << endl;
 		res_one_img.clear();
 	}
 	clock_t end = clock();
-	time += (end - start)*1.0 / CLOCKS_PER_SEC;
+	time += (end - start);
 
-	//// *************** Save Result ***************
-	//for (auto it = result.begin(); it != result.end(); it++){
-	//	ImagePath query_path = imgFold + "Img_Db\\" + it->first;
-	//	if (has_gt)
-	//		showImages(query_path, result_path, it->second, groundtruth[it->first], db_paths);
-	//	else
-	//		showImages(query_path, result_path, it->second, db_paths);
-	//}
+	// *************** Save Result ***************
+	for (auto it = result.begin(); it != result.end(); it++){
+		ImagePath query_path = imgFold + "Img_Db\\" + it->first;
+		if (has_gt)
+			showImages(query_path, result_path, it->second, groundtruth[it->first], db_paths);
+		else
+			showImages(query_path, result_path, it->second, db_paths);
+	}
 
 	// **************** Cal Recall ***************
 	//float recall = 0.0;
@@ -232,13 +239,14 @@ void TestSearcher(TSearcher& searcher,
 	//}
 
 	/*recall = recall / queries_count;*/
-	time = time / queries_count;
+	time = time * 1.0 / CLOCKS_PER_SEC/ queries_count;
 
 	out.setf(ios::fixed);
 	cout << " " << time << " #N_" << neighbours_count << " " << endl;
 	out << " total time" << time * queries_count  << " mean time: " << time 
 		<< " #N_neighbors: " << neighbours_count << " " << endl;
 }
+
 
 int main(int argc, char** argv) {
 	SetOptions(argc, argv);
@@ -252,7 +260,7 @@ int main(int argc, char** argv) {
 	/*vector<pair<string, Point>> db(data_count);
 	loadDbOrQuery(data_file, db_path_file, db, query_point_type);*/
 	Points dataset;
-	ReadPoints<float, Coord>(data_file, &dataset, data_count);	
+	//ReadPoints<float, Coord>(data_file, &dataset, data_count);	
 
 	// Load paths
 	ifstream data_path_fid(db_path_file);
@@ -270,9 +278,23 @@ int main(int argc, char** argv) {
 
 	vector<Centroids> fine_vocabs;
 	ReadFineVocabs<float>(fine_vocabs_file, &fine_vocabs);
+
+	const int thread_num = 2;
+	thread t[thread_num];
+
 	if (fine_vocabs.size() == 8) {
 		MultiSearcher<RerankADC8, PointId> searcher;
-		TestSearcher<MultiSearcher<RerankADC8, PointId> >(searcher, queries, groundtruth, dataset, db_paths);
+		for (int i = 0; i < thread_num; i++){
+			vector<pair<string, Point>> tmp_query(1, queries[i]);
+			auto func = static_cast<void(*)(MultiSearcher<RerankADC8, PointId>&, vector<pair<string, Point>>&, unordered_map<string, vector<pair<string, int>>>,
+				Points&, vector<string>&) > (TestSearcher);
+			t[i] = thread(func, ref(searcher), ref(tmp_query), groundtruth, ref(dataset), db_paths);
+
+		}
+		for (int i = 0; i < thread_num; i++){
+			t[i].join();
+		}
+		//TestSearcher<MultiSearcher<RerankADC8, PointId> >(searcher, queries, groundtruth, dataset, db_paths);
 		searcher.GetPerfTester().DoReport();
 		//TestSearcher<MultiSearcher<RerankADC8, PointId> >(searcher, queries, groundtruth, dataset, paths);
 	}

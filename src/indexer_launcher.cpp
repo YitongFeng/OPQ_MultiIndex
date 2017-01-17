@@ -53,19 +53,21 @@ int points_count;
 int multiplicity;
 
 string result_path;
-
+string index_path;
 string index_param;
+string root_path;
+string data_name;
 
 int SetOptions() {
-	string data_name = "CNN2w";
-	SPACE_DIMENSION = 256;
-	points_count = 225533;
+	data_name = "fvtmp";
+	SPACE_DIMENSION = 4992;
+	points_count = 97518;
 
-	string root_path = "I:\\Hashing\\Code\\output\\";	
-	THREADS_COUNT = 1;
+	root_path = "I:\\Hashing\\Code\\output\\";	
+	THREADS_COUNT = 8;
 	multiplicity = 2;
-	string index_path = root_path + data_name + "\\";	
-	string result_path = root_path + data_name + "\\results\\";	
+	index_path = root_path + data_name + "\\";	
+	result_path = root_path + data_name + "\\results\\";	
 	files_prefix = index_path;
 	points_file = index_path + data_name + "_base_NP.fvecs";	   // "index/fvImgDb/fgImgDb_base_NP.fvecs"
 	metainfo_file = result_path + "metainfo.txt";
@@ -114,8 +116,11 @@ int main() {
 	time += (end - start) / CLOCKS_PER_SEC / 60.0;
 
 	ofstream out;
-	out.open(result_path + "index_report.txt", ios::app);
+	out.open(root_path + data_name + "\\index_report.txt", ios::app);
+	if (out.fail())
+		cerr << "Index report file open failed!" << endl;
 	cout << " index_time " << time << "minutes" << endl;
-	out << " index_time " << time << "minutes" << endl;
+	out << " index_time " << time << "minutes " << " dim:" << SPACE_DIMENSION 
+		<< " DB num: " << points_count << " thread num: " << THREADS_COUNT << endl;
 	return 0;
 }

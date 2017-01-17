@@ -187,14 +187,14 @@ void showImages(ImagePath queryName, string saveFold, vector< DistanceToPoint> q
 	ofstream outfile;
 	outfile.open("result.txt", ios::app);
 	string imgName = splitFileName(queryName);
-	string imgSaveFold = saveFold + "\\" + imgName;
+	string imgSaveFold = saveFold + imgName;
 	string or = "md " + imgSaveFold;
 	if (access(imgSaveFold.c_str(), 0) != 0){
 		system(or.c_str());
 	}
 
 	// save query image
-	string qSavePath = imgSaveFold + "\\" + "0_0_" + imgName;
+	string qSavePath = imgSaveFold + "\\0_0_" + imgName;
 	Mat imQ = cv::imread(queryName);
 	/*bool Qbg = 0;
 	vector<Rect> Qrect;
@@ -242,7 +242,7 @@ void showImages(ImagePath queryName, string saveFold, vector< DistanceToPoint> q
 	//	imwrite(lSavePath, imTmp);*/
 	//	//copyImg(labelName, lSavePath);
 	//}
-	for (int i = 0; i < qRe.size(); i++){
+	for (int i = 0; i < 20; i++){
 		string path = paths[qRe[i].second];
 		float disF = qRe[i].first;
 		string name = splitFileName(path);
