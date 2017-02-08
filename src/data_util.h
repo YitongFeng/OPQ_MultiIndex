@@ -61,7 +61,10 @@ typedef int ClusterId;
 * \typedef
 *  Just vector of coordinates
 */
+
+
 typedef vector<Coord> Point;
+
 /**
 * \typedef
 *  Class for a number of points
@@ -141,7 +144,11 @@ enum RerankMode {
 template<class Record>
 struct MultiIndex {
 	vector<Record> multiindex;
-	Multitable<int> cell_edges;    ///< Table with index cell edges in array
+	vector<Record> multiindex_fv;
+	vector<Record> multiindex_cnn;
+	Multitable<int> cell_edges;
+	Multitable<int> cell_edges_fv;    ///< Table with index cell edges in array
+	Multitable<int> cell_edges_cnn;
 };
 
 void splitString(string inString, vector<string> &sp);

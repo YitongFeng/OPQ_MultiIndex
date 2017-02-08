@@ -83,32 +83,30 @@ int k;
 bool has_gt;
 
 int SetOptions(int argc, char** argv) {
-	string data_name = "CNN3000";
+	string data_name = "fv31test";
 	string root_path = "I:\\Hashing\\Code\\output\\";
-	imgFold = "T:\\整理的数据集\\";
-	SPACE_DIMENSION = 256;
-	data_count = 3745;
+	imgFold = "I:\\trademark\\31\\";
+	SPACE_DIMENSION = 4992;
+	data_count = 103524;
 	queries_count = 100;
 	k = 20;
+	neighbours_count = 150;	// 100, 500, 1000
+	subspaces_centroids_count = 100;
 	has_gt = false;
 
 	//THREADS_COUNT = 8;
 	//multiplicity = 2;
 	string index_path = root_path + data_name + "\\";	// "I:\\Hashing\\Code\\OPQ_Mindex_fyt\\index\\fvImgDb\\"
-	result_path = root_path + data_name + "\\results_thread\\";
-	queries_file = root_path + "CNN_query_NP.fvecs";
-	query_path_file = root_path + "CNN_query_paths.txt";
+	result_path = root_path + data_name + "\\result\\";
+	queries_file = index_path + data_name + "_query_NP.fvecs";
+	query_path_file = index_path + data_name + "_query_paths.txt";
 
 	coarse_vocabs_file = index_path + data_name + "_coarse.dat";
 	fine_vocabs_file = index_path + data_name + "_fine.dat";
 	index_files_prefix = index_path;
 	report_file = result_path + data_name + "_report.txt";
 	groundtruth_file = root_path + "gt_744.txt";	//************need to prepare gt files! *********
-	db_path_file = index_path + data_name + "_paths.txt";
-	
-
-	neighbours_count = 100;	// 100, 500, 1000
-	subspaces_centroids_count = 2 * k;
+	db_path_file = index_path + data_name + "_paths.txt";	
 	data_file = index_path + data_name + "_base_NP.fvecs";
 	use_originaldata = 0;	// 计算距离的时候用原数据还是用opq code
 
@@ -219,7 +217,7 @@ void TestSearcher(TSearcher& searcher,
 
 	// *************** Save Result ***************
 	for (auto it = result.begin(); it != result.end(); it++){
-		ImagePath query_path = imgFold + "Img_Db\\" + it->first;
+		ImagePath query_path = imgFold + it->first;
 		if (has_gt)
 			showImages(query_path, result_path, it->second, groundtruth[it->first], db_paths);
 		else
@@ -284,24 +282,15 @@ int main(int argc, char** argv) {
 
 	if (fine_vocabs.size() == 8) {
 		MultiSearcher<RerankADC8, PointId> searcher;
-		for (int i = 0; i < thread_num; i++){
-			vector<pair<string, Point>> tmp_query(1, queries[i]);
-			auto func = static_cast<void(*)(MultiSearcher<RerankADC8, PointId>&, vector<pair<string, Point>>&, unordered_map<string, vector<pair<string, int>>>,
-				Points&, vector<string>&) > (TestSearcher);
-			t[i] = thread(func, ref(searcher), ref(tmp_query), groundtruth, ref(dataset), db_paths);
-
-		}
-		for (int i = 0; i < thread_num; i++){
-			t[i].join();
-		}
+		TestSearcher<MultiSearcher<RerankADC8, PointId> >(searcher, queries, groundtruth, dataset, db_paths);
 		//TestSearcher<MultiSearcher<RerankADC8, PointId> >(searcher, queries, groundtruth, dataset, db_paths);
-		searcher.GetPerfTester().DoReport();
+		//searcher.GetPerfTester().DoReport();
 		//TestSearcher<MultiSearcher<RerankADC8, PointId> >(searcher, queries, groundtruth, dataset, paths);
 	}
 	else if (fine_vocabs.size() == 16) {
 		MultiSearcher<RerankADC16, PointId> searcher;
 		TestSearcher<MultiSearcher<RerankADC16, PointId> >(searcher, queries, groundtruth, dataset, db_paths);
-		searcher.GetPerfTester().DoReport();
+		//searcher.GetPerfTester().DoReport();
 		//TestSearcher<MultiSearcher<RerankADC16, PointId> >(searcher, queries, groundtruth, dataset, paths);
 	}
 

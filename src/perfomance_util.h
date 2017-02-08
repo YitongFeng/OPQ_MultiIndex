@@ -92,8 +92,9 @@ inline bool comp_with_pointid(DistanceToPoint r1, DistanceToPoint r2){
 void removeDublicates(vector<DistanceToPoint>& res_tmp, vector<string>& db_paths);
 
 // Save images of searching results
-void showImages(ImagePath queryName, string saveFold, vector< DistanceToPoint> qRe, vector<pair<string, int> > qOrder, vector<string> paths);
-void showImages(ImagePath queryName, string saveFold, vector< DistanceToPoint> qRe, vector<string> paths);
+void showImages(ImagePath queryName, string saveFold, vector< DistanceToPoint>& qRe, vector<pair<string, int> > qOrder, vector<string> paths);
+void showImages(ImagePath queryName, string saveFold, vector< DistanceToPoint>& qRe, vector<string>& paths);
+void showImages(ImagePath queryName, string saveFold, vector< DistanceToPoint>& qRe, vector<string>& cnn_paths, vector<string>& fv_paths);
 
 /**
 *  This function returns recall at specified length

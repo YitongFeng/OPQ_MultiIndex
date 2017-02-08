@@ -6,8 +6,8 @@
     <ReleaseOpencvLib>opencv_core2410.lib;opencv_highgui2410.lib;opencv_imgproc2410.lib;libopenblas.dll.lib;boost_serialization-vc120-mt-1_62.lib;libboost_chrono-vc120-mt-1_62.lib;libboost_date_time-vc120-mt-1_62.lib;libboost_filesystem-vc120-mt-1_62.lib;libboost_system-vc120-mt-1_62.lib;libboost_thread-vc120-mt-1_62.lib;</ReleaseOpencvLib>
   </PropertyGroup>
   <PropertyGroup>
-    <LibraryPath>R:\qcz\qcz_env\caffe-master\NugetPackages\OpenBLAS.0.2.14.1\lib\native\lib\x64;C:\opencv2.4.10\lib\x64\v120\Debug;C:\opencv2.4.10\lib\x64\v120\Release;C:\local\boost_1_62_0\build_vc12_x64\lib;$(LibraryPath)</LibraryPath>
-    <IncludePath>C:\opencv2.4.10\include;C:\opencv2.4.10\include\opencv;C:\opencv2.4.10\include\opencv2;C:\local\boost_1_62_0;R:\qcz\qcz_env\caffe-master\NugetPackages\OpenBLAS.0.2.14.1\lib\native\include;../../src/;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\vlfeat-0.9.20-bin\vlfeat-0.9.20\bin\win64;R:\qcz\qcz_env\caffe-master\NugetPackages\OpenBLAS.0.2.14.1\lib\native\lib\x64;C:\opencv2.4.10\lib\x64\v120\Debug;C:\opencv2.4.10\lib\x64\v120\Release;C:\local\boost_1_62_0\build_vc12_x64\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\vlfeat-0.9.20-bin\vlfeat-0.9.20;C:\opencv2.4.10\include;C:\opencv2.4.10\include\opencv;C:\opencv2.4.10\include\opencv2;C:\local\boost_1_62_0;R:\qcz\qcz_env\caffe-master\NugetPackages\OpenBLAS.0.2.14.1\lib\native\include;../../src/;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Link>

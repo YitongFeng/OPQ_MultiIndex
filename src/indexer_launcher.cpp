@@ -52,6 +52,8 @@ int points_count;
 */
 int multiplicity;
 
+int file_num;	// how many feature files need to be index
+
 string result_path;
 string index_path;
 string index_param;
@@ -59,22 +61,23 @@ string root_path;
 string data_name;
 
 int SetOptions() {
-	data_name = "fvtmp";
-	SPACE_DIMENSION = 4992;
-	points_count = 97518;
+	data_name = "fv_final2";
+	SPACE_DIMENSION = 1024;
+	//points_count = 227430;
+	file_num = 21;
 
 	root_path = "I:\\Hashing\\Code\\output\\";	
-	THREADS_COUNT = 8;
+	THREADS_COUNT = 1;
 	multiplicity = 2;
 	index_path = root_path + data_name + "\\";	
-	result_path = root_path + data_name + "\\results\\";	
+	//result_path = root_path + data_name + "\\result\\";	
 	files_prefix = index_path;
 	points_file = index_path + data_name + "_base_NP.fvecs";	   // "index/fvImgDb/fgImgDb_base_NP.fvecs"
-	metainfo_file = result_path + "metainfo.txt";
+	//metainfo_file = result_path + "metainfo.txt";
 	coarse_vocabs_file = index_path + data_name + "_coarse.dat";    // "index/fvImgDb/fgImgDb_coarse.dat"
 	fine_vocabs_file = index_path + data_name + "_fine.dat";
-	coarse_quantizations_file = index_path + data_name + "_coarse_idx.dat";
-	build_coarse_quantizations = 0;
+	//coarse_quantizations_file = index_path + data_name + "_coarse_idx.dat";
+	build_coarse_quantizations = 1;
 	mode = USE_RESIDUALS;
 	point_type = FVEC;
 
@@ -97,8 +100,12 @@ int main() {
 	cout << "read coarse file\n";
 	ReadFineVocabs<float>(fine_vocabs_file, &fine_vocabs);
 	cout << "Vocs are read ...\n";
-	
+
 	clock_t start = clock();
+
+	for (int i = 0;)
+
+
 	if (fine_vocabs.size() == 8) {
 		MultiIndexer<RerankADC8> indexer(multiplicity);
 		indexer.BuildMultiIndex(points_file, metainfo_file, points_count, coarse_vocabs,

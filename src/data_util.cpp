@@ -1,5 +1,5 @@
 // Copyright 2012 Yandex Artem Babenko
-
+#include "stdafx.h"
 #include "data_util.h"
 
 void splitString(string inString, vector<string> &sp){
@@ -219,7 +219,7 @@ void GetPointsCoarseQuaintizations(const Points& points,
 		vector<ClusterId> cluster_labels;
 		cluster_labels.resize(points.size());
 		Dimensions start_dim = centroids_index * subvector_dimension;
-		Dimensions final_dim = std::min((Dimensions)points[0].size(), start_dim + subvector_dimension);
+		Dimensions final_dim = min((Dimensions)points[0].size(), start_dim + subvector_dimension);
 		GetNearestClusterIdsForSubpoints(points, centroids[centroids_index],
 			start_dim, final_dim, threads_count, &cluster_labels);
 		for (PointId pid = 0; pid < points.size(); ++pid) {

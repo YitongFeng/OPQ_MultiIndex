@@ -18,7 +18,7 @@ niter=30;
 M=2;    % number of subspaces
 
 % tic;
-%%%OPQ_NP
+%% %OPQ_NP
 R_init = eye(dim);
 learn_data = single(learn_data);    % convert double to float
 vocabSize = 2^K;
@@ -45,20 +45,19 @@ fwrite(file, vocab2, 'float');
 fclose('all');
 save([coarse_name '.mat'], 'vocab1', 'vocab2');
 
-clear all_data;
-raw_data = fvecs_read(raw_data_file);
-raw_data = single(raw_data);
+% raw_data = fvecs_read(raw_data_file);
+% raw_data = single(raw_data);
 
-% Cal and save idx_table (data only, no size describtion!)
-idx_table = calidx(raw_data, vocab1, vocab2);
-save([idx_file '.mat'], 'idx_table');
-idx_fout = fopen([idx_file '.dat'], 'w');
-fwrite(idx_fout, idx_table', 'int32');
+% % Cal and save idx_table (data only, no size describtion!)
+% idx_table = calidx(raw_data, vocab1, vocab2);
+% save([idx_file '.mat'], 'idx_table');
+% idx_fout = fopen([idx_file '.dat'], 'w');
+% fwrite(idx_fout, idx_table', 'int32');
 
 learn_data = learn_data';
 idx_table_part = calidx(learn_data, vocab1, vocab2);
 save([idx_file '_part.mat'], 'idx_table_part');
 
-clear raw_data;
+clear learn_data;
 % time=toc;
 end

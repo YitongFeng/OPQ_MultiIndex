@@ -45,6 +45,15 @@
     <ClInclude Include="..\..\src\searcher.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="preprocess_dll.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sift_fv_dll.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CNN_API.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -57,6 +66,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\data_util.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\perfomance_util.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

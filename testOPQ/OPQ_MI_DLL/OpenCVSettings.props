@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <DebugOpencvLib>opencv_objdetect2410d.lib;opencv_core2410d.lib;opencv_highgui2410d.lib;opencv_imgproc2410d.lib;opencv_features2d2410d.lib;opencv_legacy2410d.lib;opencv_nonfree2410d.lib;vl.lib</DebugOpencvLib>
+    <ReleaseOpencvLib>opencv_objdetect2410.lib;opencv_core2410.lib;opencv_highgui2410.lib;opencv_imgproc2410.lib;opencv_features2d2410.lib;opencv_legacy2410.lib;opencv_nonfree2410.lib;vl.lib</ReleaseOpencvLib>
+  </PropertyGroup>
+  <PropertyGroup>
+    <LibraryPath>C:\vlfeat-0.9.20-bin\vlfeat-0.9.20\bin\win64;C:\opencv2.4.10\lib\x64\v120\Release;C:\opencv2.4.10\lib\x64\v120\Debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\library\boost.1.59.0.0\lib\native\include;C:\vlfeat-0.9.20-bin\vlfeat-0.9.20;C:\opencv2.4.10\include;C:\opencv2.4.10\include\opencv;C:\opencv2.4.10\include\opencv2;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Link>
+      <AdditionalDependencies>$(ReleaseOpencvLib);%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Link>
+      <AdditionalDependencies>$(DebugOpencvLib);%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+</Project>

@@ -1,4 +1,5 @@
 // Copyright 2012 Yandex Artem Babenko
+#include "stdafx.h"
 #include "perfomance_util.h"
 
 PerfTester::PerfTester() {
@@ -72,7 +73,7 @@ void removeDublicates(vector<DistanceToPoint>& res_tmp, vector<string>& db_paths
 	for (int ii = 1; ii < res_tmp.size(); ii++){
 		int id1 = res_tmp[ii - 1].second;
 		int id2 = res_tmp[ii].second;
-		if ((id2 == (id1 + 1) || id2 == id1) && db_paths[id1] == db_paths[id2]){	//只有pointid相邻的特征才可能是同一幅图的特征
+		if ( (abs(id2 -id1) < 7) && db_paths[id1] == db_paths[id2]){	//只有pointid相邻的特征才可能是同一幅图的特征
 			if (res_tmp[ii - 1].first < res_tmp[ii].first){
 				res_tmp.erase(res_tmp.begin() + ii);
 				ii--;
@@ -85,7 +86,7 @@ void removeDublicates(vector<DistanceToPoint>& res_tmp, vector<string>& db_paths
 	}
 }
 
-void showImages(ImagePath queryName, string saveFold, vector< DistanceToPoint> qRe, vector<pair<string, int> > qOrder, vector<string> paths){
+void showImages(ImagePath queryName, string saveFold, vector< DistanceToPoint>& qRe, vector<pair<string, int> >& qOrder, vector<string> paths){
 	if (qOrder.empty()){
 		cerr << "ShowImage functon, gt is empty! " << queryName << endl;
 	}
@@ -183,7 +184,7 @@ void showImages(ImagePath queryName, string saveFold, vector< DistanceToPoint> q
 	outfile.close();
 }
 
-void showImages(ImagePath queryName, string saveFold, vector< DistanceToPoint> qRe, vector<string> paths){
+void showImages(ImagePath queryName, string saveFold, vector< DistanceToPoint>& qRe, vector<string>& paths){
 	ofstream outfile;
 	outfile.open("result.txt", ios::app);
 	string imgName = splitFileName(queryName);
@@ -271,6 +272,56 @@ void showImages(ImagePath queryName, string saveFold, vector< DistanceToPoint> q
 	outfile.close();
 }
 
+void showImages(ImagePath queryName, string saveFold, vector< DistanceToPoint>& qRe, vector<string>& cnn_paths, vector<string>& fv_paths){
+	ofstream outfile;
+	outfile.open("result.txt", ios::app);
+	string imgName = splitFileName(queryName);
+	string imgSaveFold = saveFold + imgName;
+	string or = "md " + imgSaveFold;
+	if (access(imgSaveFold.c_str(), 0) != 0){
+		system(or.c_str());
+	}
+
+	// save query image
+	string qSavePath = imgSaveFold + "\\0_0_" + imgName;
+	Mat imQ = cv::imread(queryName);
+	
+	imwrite(qSavePath, imQ);
+	outfile << "query: " << imgName << endl;
+
+	for (int i = 0; i < 30; i++){
+		string path;
+		if (i < 10)
+			path = cnn_paths[qRe[i].second];
+			//continue;
+		else
+			path = fv_paths[qRe[i].second];
+		float disF = qRe[i].first;
+		string name = splitFileName(path);
+		int proposalOrder = 0;
+
+		char num[100], dis[100];
+		sprintf(num, "%d", i + 1);
+		sprintf(dis, "%3f", disF);
+		string numS(num), disS(dis);
+		string rSavePath = imgSaveFold + "\\" + "0_2_" + numS + "_" + disS + "_" + name;
+
+		cout << path << endl;
+		cout << "result : " << i + 1 << " name :" << name << " dis : " << disF << endl;
+		outfile << "result : " << i + 1 << " name :" << name << " dis : " << disF << endl;
+
+		Mat imTmp = cv::imread(path);
+		bool bg = 0;
+		/*vector<Rect> rect;
+		proposal(&IplImage(imTmp), rect, bg);
+		Rect rectShow = rect[proposalOrder];
+		rectangle(imTmp, cvPoint(rectShow.x, rectShow.y), cvPoint(rectShow.x + rectShow.width, rectShow.y + rectShow.height), CV_RGB(255, 0, 0), 3, 8, 0);
+		*/
+		imwrite(rSavePath, imTmp);
+
+	}
+	outfile.close();
+}
 
 int GetRecallAt(const int length, const vector<PointId>& groundtruth,
 	const vector<DistanceToPoint>& result) {

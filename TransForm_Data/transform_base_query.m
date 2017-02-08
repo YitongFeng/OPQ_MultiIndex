@@ -2,10 +2,10 @@
 % raw data * R_opq_p
 
 function transform_base_query(data_path,query_path,Rinit_path,trans_data_path, trans_query_path)
-
+load('fvpca_1024.mat', 'pc');
 R_opq_p = fvecs_read(Rinit_path);
 dataset = fvecs_read(data_path);
-
+dataset = pc' * dataset;
 dataset = R_opq_p' * dataset;
 fvecs_write(trans_data_path,dataset);
 

@@ -38,14 +38,14 @@ bytes_per_point = M;
 % cal opq code of residuals
 D = size(residual,1) / bytes_per_point; % dim of each subspace
 residual_vocab = cell(bytes_per_point,1);
-fine_idx_table = zeros(size(residual, 2), M);
+%fine_idx_table = zeros(size(residual, 2), M);
 dist = cell(bytes_per_point,1);
 niter = 30;
 for m = 1:bytes_per_point
     chunk = residual(D*m-D+1:D*m,:);
         % add implementation of K-means
     [residual_vocab{m}, idx_m] = vl_kmeans(chunk, 2^K);
-    fine_idx_table(:, m) = idx_m;
+    %fine_idx_table(:, m) = idx_m;
     dist{m} = vl_alldist2(residual_vocab{m});          
 end
 
@@ -67,7 +67,7 @@ for i = 1:vocabs_count
 end
 
 % save fine idx table
-save([fine_idx_name '.mat'], 'fine_idx_table');
+%save([fine_idx_name '.mat'], 'fine_idx_table');
 % fine_idx_table = fine_idx_table - 1;
 % fine_idx_fout = fopen([fine_idx_name '.dat'], 'w');
 % %fwrite(fine_idx_fout, size(residual, 2), 'int32');

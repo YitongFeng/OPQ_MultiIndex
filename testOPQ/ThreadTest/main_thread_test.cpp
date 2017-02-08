@@ -46,11 +46,11 @@ MultiSearcher<RerankADC8, PointId> searcher;
 Points dataset;
 
 int SetOptions() {
-	data_name = "CNN3000";
+	data_name = "fv31test";
 	root_path = "I:\\Hashing\\Code\\output\\";
-	imgFold = "T:\\整理的数据集\\";
-	SPACE_DIMENSION = 256;
-	data_count = 3745;
+	imgFold = "I:\\trademark\\31\\";
+	SPACE_DIMENSION = 4992;
+	data_count = 103524;
 	queries_count = 100;
 	k = 100;
 	fine_vocab_size = 8;
@@ -61,9 +61,9 @@ int SetOptions() {
 	//THREADS_COUNT = 8;
 	//multiplicity = 2;
 	string index_path = root_path + data_name + "\\";	// "I:\\Hashing\\Code\\OPQ_Mindex_fyt\\index\\fvImgDb\\"
-	result_path = root_path + data_name + "\\results_thread\\";
-	queries_file = root_path + "CNN_query_NP.fvecs";
-	query_path_file = root_path + "CNN_query_paths.txt";
+	result_path = root_path + data_name + "\\result\\";
+	queries_file = index_path + data_name + "_query_NP.fvecs";
+	query_path_file = index_path + data_name + "_query_paths.txt";
 
 	coarse_vocabs_file = index_path + data_name + "_coarse.dat";
 	fine_vocabs_file = index_path + data_name + "_fine.dat";
@@ -239,10 +239,10 @@ bool query(pair<string, Point> query_point, vector<pair<string, float>>& query_r
 
 	// *************** Save Result ***************
 
-	/*if (has_gt)
+	if (has_gt)
 		showImages(query_point.first, result_path, result, groundtruth[splitFileName(query_point.first)], db_paths);
-	else*/
-		//showImages(query_point.first, result_path, result, db_paths);
+	else
+		showImages(query_point.first, result_path, result, db_paths);
 
 
 	// **************** Cal Recall ***************
@@ -276,13 +276,20 @@ int main(){
 	const int thread_num = 10;
 
 	thread t[thread_num];
+	int test_num = 10;
 	for (int i = 0; i < thread_num; i++){
 		vector<pair<string, float>> query_result;
 		auto func = static_cast<bool(*)(pair<string, Point>, vector<pair<string, float>>&, bool, int)>(query);
-		t[i] = thread(func, queries[0], query_result, false, i);
+		t[i] = thread(func, queries[i], query_result, false, i);
 	}
 	for (int i = 0; i < thread_num; i++)
 		t[i].join();
+
+	/*int test_num = 10;
+	for (int i = 0; i < test_num; i++){
+		vector<pair<string, float>> query_result;
+		query(queries[i], query_result, false, 0);
+	}*/
 
 	return 0;
 }

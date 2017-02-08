@@ -287,18 +287,22 @@ void MultiIndexer<Record>::ReadPoint(ifstream& input, Point* point) {
 template<class Record>
 void MultiIndexer<Record>::SerializeCoarseQuantizations(const vector<vector<ClusterId> >&
 		                                                          transposed_coarse_quantizations,
-                                                        const string& filename) {
+                                                         const string& filename) {
   ofstream quantizations_stream;
   quantizations_stream.open(filename.c_str(), ios::binary);
   if(!quantizations_stream.good()) {
     throw std::logic_error("Bad input stream");
   }
+
+  
   cout << "Writing coarse quantizations started" << endl;
   for(PointId pid = 0; pid < transposed_coarse_quantizations[0].size(); ++pid) {
     for(int subspace_index = 0; subspace_index < multiplicity_; ++subspace_index) {
       ClusterId quantization = transposed_coarse_quantizations[subspace_index][pid];
       quantizations_stream.write((char*)&quantization, sizeof(quantization));
+	  
     }
+
   }
   quantizations_stream.close();
   cout << "Writing coarse quantizations started" << endl;
@@ -457,7 +461,8 @@ void MultiIndexer<Record>::GetCoarseQuantizationsForSubset(const string& points_
   ifstream point_stream;
   point_stream.open(points_filename.c_str(), ios::binary);
   if(!point_stream.good()) {
-    throw std::logic_error("Bad input points stream");
+	  cerr << "Bad input points stream" << endl;
+	  throw std::logic_error("Bad input points stream");
   }
   // we assume points are stored in .fvecs or .bvecs format
   point_stream.seekg(start_pid * (GetInputCoordSizeof() * SPACE_DIMENSION + sizeof(Dimensions)), ios::beg);
